@@ -1,0 +1,256 @@
+*{
+	margin:auto;
+	padding:auto;
+}
+.top{
+	background:#f0f0f0;
+	border-bottom:2px solid #e0e0e0;
+}
+.top div{
+	width:1200px;
+	color:pink;
+	text-transform:uppercase;
+	padding:5px;
+	text-align:right;
+	background-color:;
+	font-family:Berlin Sans FB;
+	font-size:13px;
+}
+.top div a{
+	text-decoration:none;
+	color:#333;
+}
+.top div a:hover{
+	background-color:white;
+	padding:5px;
+	transition:1s;
+}
+
+.head{
+	background:;
+	border-bottom:0px solid #e0e0e0;
+}
+.head div{
+	width:1170px;
+	color:#15395f;
+	padding:20px;
+	background-color:;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:14px;
+}
+.head div p{
+	font-size:70px;
+	margin-left:10px;
+	color:#15395f;
+	font-weight:bold;
+}
+
+
+.middle{
+	margin-top:0px;
+	background:;
+	width:100%;
+	border:0px;
+	border-bottom:0px solid #f1f1f1;
+	overflow:hidden;
+}
+.middle_up{
+	width:1200px;
+	height:40px;
+	margin-top:0px;
+	padding:0px;
+	border-bottom:0px solid silver;
+	margin-bottom:0px;
+	background-color:;
+}
+.middle_up_left{
+	height:310px;
+	padding:10px;
+	font-family:calibri;
+	width:430px;
+	color:#000;
+	float:left;
+	font-size:40px;
+	background-color:;
+	padding-right:30px;
+}
+.middle_up_left a{
+	background-color:;
+	color:#15395f;
+	padding:5px;
+	text-decoration:none;
+}
+.middle_up_left a:hover{
+	background-color:#ffff;
+}
+
+.middle_up_right{
+	height:280px;
+	float:right;
+	font-size:30px;
+	margin-top:100px;
+	font-family:calibri;
+	padding:10px;
+	text-align:left;
+	color:#15395f;
+	width:700px;
+	background-color:;
+}
+.middle_up_right img{
+		border-radius:50px;
+		box-shadow:0px 5px 15px 0px;
+}
+
+.menu{
+	background:#f7f7f7;
+	border-bottom:0px solid #e0e0e0;
+	
+}
+.menu div{
+	width:1200px;
+	color:#fff;
+	background-color:;
+	padding:0px;
+	background-color:;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:18px;
+}
+ul{
+	list-style-type:none;
+	background-color:#15395f;
+	padding:10px;
+	border-top-left-radius:50px;
+	border-bottom-left-radius:50px;
+	
+}
+ul li{
+	text-transform:uppercase;
+	display:inline;
+	padding:10px;
+}
+ul li:hover{
+	transition:2s;
+	color:black;
+	cursor:pointer;
+	background-color:white;
+}
+
+.down{
+	background:#f0f0f0;
+	border-bottom:0px solid #e0e0e0;
+}
+.down div{
+	width:1200px;
+	color:#15395f;
+	text-align:center;
+	padding:50px;
+	background-color:;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:18px;
+}
+.down div table{
+	margin-left:50px;
+	color:#15395f;
+	text-align:center;
+	font-size:20px;
+	
+}
+.down div img{
+	width:150px;
+	height:150px;
+	transition:width 2s, height 2s;
+}
+.down div img:hover{
+	cursor:pointer;
+	width:170px;
+	height:170px;
+	transition:width 2s, height 2s;
+}
+
+.bottom{
+	margin-top:0px;
+	background:;
+	width:100%;
+	border:0px;
+	border-bottom:0px solid #f1f1f1;
+	overflow:hidden;
+}
+.bottom_up{
+	width:1200px;
+	height:40px;
+	margin-top:0px;
+	padding:0px;
+	border-bottom:0px solid silver;
+	margin-bottom:0px;
+	background-color:;
+}
+.bottom_up_left{
+	height:600px;
+	padding:10px;
+	font-family:arial;
+	width:580px;
+	color:#fff;
+	line-height:70px;
+	float:left;
+	font-size:70px;
+	background-color:#15395f;
+	padding-right:30px;
+}
+.bottom_up_left a{
+	background-color:;
+	color:#15395f;
+	padding:5px;
+	text-decoration:none;
+}
+.bottom_up_left a:hover{
+	background-color:#ffff;
+}
+
+.bottom_up_right{
+	height:340px;
+	float:right;
+	padding:10px;
+	color:#15395f;
+	font-size:60px;
+	font-family:calibri;
+	width:500px;
+	background-color:;
+}
+.other{
+	background:#f0f0f0;
+	border-bottom:2px solid #e0e0e0;
+}
+.other div{
+	width:1200px;
+	color:pink;
+	padding:30px;
+	background-color:;
+	font-family:ariel, Helvetica, sans-serif;
+	font-size:13px;
+}
+
+.bot{
+	background:#f0f0f0;
+	border-bottom:2px solid #e0e0e0;
+}
+.bot div{
+	width:1200px;
+	color:#fff;
+	padding:30px;
+	background-color:#333;
+	font-family:ariel, Helvetica, sans-serif;
+	font-size:17px;
+}
+input[type=text]{
+	width:250px;
+	border-style:none;
+	border-bottom:2px solid #15395f;
+	padding:10px;
+	transition:width 2s;
+
+}
+input[type=text]:hover{
+	width:660px;
+}
+
+

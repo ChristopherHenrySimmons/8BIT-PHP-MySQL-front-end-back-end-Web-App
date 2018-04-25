@@ -1,0 +1,42 @@
+
+
+
+
+
+
+/*****************Photo Gallery Styles*************************************************/
+
+
+	.thumbnails img
+ {
+		min-height: 100px;
+		min-width:70px;
+		border: 2px solid #57007F;
+		padding: px;
+		margin: 0 10px 10px 0;
+		box-shadow:0 0 40px 0 black;
+	}
+
+	.thumbnails img:hover {
+		border: 2px solid #57007F;
+		cursor:pointer;
+		box-shadow:0 0 40px 0 black;
+	}
+
+	.preview img {
+		border: 2px solid #57007F;
+		padding: px;
+		width: 780px;
+		height:500px;
+		box-shadow:0 0 40px 0 black;
+	}
+/*****************************************************************/
+
+
+
+
+
+
+
+
+

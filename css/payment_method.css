@@ -1,0 +1,24 @@
+@charset "utf-8";
+
+.list_method li{float:left}
+.list_method .link_method{display:block;overflow:hidden;position:relative;width:280px;height:132px;text-align:center}
+.list_method .link_method:hover, .list_method .on .link_method{background-image:url(https://akamai-webcdn.kgstatic.net/bdo/renewal/images/shop/bg_tab_hover.png), url(https://akamai-webcdn.kgstatic.net/bdo/renewal/images/shop/bg_tab_hover.png);background-position:0 0, 0 100%;background-repeat:no-repeat}
+.list_method li:nth-child(2) .link_method:hover, .list_method li:nth-child(2).on .link_method{background-position:-280px 0, -280px 100%}
+.list_method li:nth-child(3) .link_method:hover, .list_method li:nth-child(3).on .link_method{background-position:-560px 0, -560px 100%}
+.list_method li:last-child .link_method:hover, .list_method li:last-child.on .link_method{background-position:100% 0, 100% 100%}
+.list_method .img_method{position:absolute;top:0;left:0;right:0;bottom:0;margin:auto;max-width:100%}
+.list_method .img_paysafe{width:185px;height:31px}
+.list_method .img_paypal{width:137px;height:36px;background-position:-190px 0}
+.list_method .img_card{width:65px;height:41px;background-position:-330px 0}
+.list_method .img_direct{width:135px;height:40px;background-position:-400px 0}
+.list_method .link_method:hover .img_paysafe, .list_method .on .img_paysafe{background-position:0 -50px}
+.list_method .link_method:hover .img_paypal, .list_method .on .img_paypal{background-position:-190px -50px}
+.list_method .link_method:hover .img_card, .list_method .on .img_card{background-position:-330px -50px}
+.list_method .link_method:hover .img_direct, .list_method .on .img_direct{background-position:-400px -50px}
+.group_method{overflow:visible;position:relative;height:4px}
+.group_method .img_method{position:absolute;top:-64px;right:10px;height:41px}
+.group_method .img_paysafe{width:185px;background-position:0 -45px}
+.group_method .img_paypal{width:137px;background-position:-190px -48px}
+.group_method .img_card{width:65px;background-position:-330px -50px}
+.group_method .img_direct{width:135px;background-position:-400px -50px}
+.group_method .img_test{background: url(https://akamai-webcdn.kgstatic.net/bdo/renewal/images/shop/logo_test.png) 0 0 no-repeat; width:100px;}
