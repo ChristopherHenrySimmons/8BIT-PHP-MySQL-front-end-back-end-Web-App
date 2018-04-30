@@ -62,7 +62,7 @@
 	<div id="cMain">
 		<div id="mArticle">
 		<!--Cover Image Needed add in common.css-->
-			<div class="bg_cover"></div>
+			<?php include_once 'bgcover.php'; ?>
 			<div class="detail_black">
 				<h2 class="tit_detail" id="kakaoBody">ADMIN LOGIN</h2>
 				<!--adminpage.php to login_mid.php-->

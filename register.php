@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
 	<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	
 <?php
 include_once 'head.php';
 ?>
@@ -9,57 +10,18 @@ include_once 'head.php';
 
 
 
-<!-----Navigation bar----->
-
-<div class="inner_head">
-				
-<ul class="gnb_comm">
-			
-			
-<!--Home Temp-->
-<li>
-<a href="index.php" class="link_gnb">HOME<span class="img_8bit ico_arr"></span></a>
-</li>
-<!------------->		
-<!---News dropdown menu---->
-<li>
-<a href="news.php" class="link_gnb">NEWS<span class="img_8bit ico_arr"></span></a>
-<!--Deleted-->
-</li>
-<!--------------------------->
-				
-				
-				
-				
-<!--DELETED-->
-				
-				
-
-		
-<!----Login and register buttons----->
-<div id="login"style="float:right;margin-right:10px">
-<li><a href="login.php" class="link_gnb">LOGIN</a></li>
-<li><a href="register.php" class="link_gnb">REGISTER</a></li>
-
-					
-					
-					
-<!----Buy now button----->
-<li><a href="buyform.php" class="">
-<span class="btn_regist" style="margin-top:12%;">BUY NOW</span></a></li>
-</div>
-</div>	
-
-</ul>
-</div>
-<!----End of navigation bar------>	
+<?php
+	include_once 'navBarLogout.php';
+?>	
 
 <hr class="hide">
 	<div class="cont_login" id="kakaoContent">
 		<div id="cMain">
 			<div id="mArticle">
 			<!--Cover Image Needed add in common.css-->
-				<div class="bg_cover"></div>
+			<?php include_once 'bgcover.php'; ?>
+				
+				
 				<div class="detail_black">
 					<h2 class="tit_detail" id="kakaoBody">CREATE YOUR ACCOUNT</h2>
 					<p class="desc_login" style="color:#FFF">Join us on your next great happy adventure.</p>

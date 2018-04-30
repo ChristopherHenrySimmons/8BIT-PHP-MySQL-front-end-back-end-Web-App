@@ -68,7 +68,7 @@
 	<div class="cont_account" id="kakaoContent">
 		<div id="cMain">
 			<div id="mArticle">
-				<div class="bg_cover"></div>
+				<?php include_once 'bgcover.php'; ?>
 				<div class="detail_black">
 					<div class="wrap_tit">
 						<h2 class="tit_detail" id="kakaoBody"><span class="img_black"></span>ADMIN PAGE</h2>

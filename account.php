@@ -7,103 +7,17 @@
 
 <body>
 	
-	<script>
-window.fbAsyncInit = function() {
-   FB.init({
-     appId            : '663791690327711',
-     autoLogAppEvents : true,
-     xfbml            : true,
-     version          : 'v2.9'
-   });
-   FB.AppEvents.logPageView();
-};
-
-(function(d, s, id){
-   var js, fjs = d.getElementsByTagName(s)[0];
-   if (d.getElementById(id)) {return;}
-   js = d.createElement(s); js.id = id;
-   js.src = "//connect.facebook.net/en_US/sdk.js";
-   fjs.parentNode.insertBefore(js, fjs);
- }(document, 'script', 'facebook-jssdk'));
-</script>
-
 	
-<script type="text/javascript">
-$(document).ready(function($) {
-	var language_json = {};
-	var form = $("<form/>", {id:'__languageForm',action:'',method:"GET"} );
-	for(var key in language_json) {
-		form.append( $("<input>",{type:'hidden',name:key,value:language_json[key]}) );
-	}
-	$("#_languageForm").append(form);
-	
-	$(".gnb_lang_link").on("click",function(){
-		var form =$("#__languageForm");
-		form.append( $("<input>",{type:'hidden',name:'lang',value:$(this).attr("data-value")}) );
-		form.submit();
-	});
-});
-</script>
 
-<!-----Navigation bar----->
-
-<div class="inner_head">
-				
-<ul class="gnb_comm">
-			
-			
-<!--Home Temp-->
-<li>
-<a href="index.php" class="link_gnb">HOME<span class="img_8bit ico_arr"></span></a>
-</li>
-<!------------->		
-<!---News dropdown menu---->
-<li>
-<a href="news.php" class="link_gnb">NEWS<span class="img_8bit ico_arr"></span></a>
-<!--Deleted-->
-</li>
-<!--------------------------->
-				
-				
-				
-				
-<!--DELETED-->
-				
-				
-<!--DELETED-->
-		
-<!----Login and register buttons----->
-<div id="login"style="float:right;margin-right:10px">
-
-						<li>
-						<a href="account.php" class="link_gnb">ACCOUNT</a>
-						<div class="gnb_sub">
-							<ul class="list_sub">
-								<li><a href="account.php" class="link_gnb_sub">INFO</a></li>
-								<li><a href="account.php" class="link_gnb_sub">HISTORY</a></li>
-								<li><a href="index.php" class="link_gnb_sub">LOGOUT</a></li>
-							</ul>
-						</div>
-					</li>
-<!--DELETED-->
-					
-					
-					
-<!----Buy now button----->
-<li><a href="buyform.php" class="">
-<span class="btn_regist" style="margin-top:12%;">BUY NOW</span></a></li>
-</div>
-</div>	
-
-</ul>
-</div>
-<!----End of navigation bar------>	
+<?php
+include_once 'navBarLogin.php';
+?>	
 
 <hr class="hide">
 	<div class="cont_account" id="kakaoContent">
 		<div id="cMain">
 			<div id="mArticle">
-				<div class="bg_cover"></div>
+				<?php include_once 'bgcover.php'; ?>
 				<div class="detail_black">
 					<div class="wrap_tit">
 						<h2 class="tit_detail" id="kakaoBody"><span class="img_black"></span>ACCOUNT</h2>

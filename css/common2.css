@@ -234,7 +234,7 @@ a.anchor {display: block;position: relative;top: -160px;visibility: hidden;}
 .detail_black .list_regist dd{display:table-cell;position:relative;color:#111}
 .item_thumb{position:relative;width:148px;height:148px;margin:0 auto}
 .tit_item{display:block;padding-top:14px;font-weight:normal;font-size:20px;line-height:26px;color:#fff;text-align:center}
-.item_thumb .ico_item{display:block;width:148px;height:148px;border-radius:50%;background:url(zombieflyinghead.gif) 0 0 no-repeat;background-color:#f0f0f0;text-indent:-9999px}
+/*DELETED {display:block;width:148px;height:148px;border-radius:50%;background:(img/zombieflyinghead.gif) 0 0 no-repeat;background-color:#f0f0f0;text-indent:-9999px}*/
 .item_thumb .ico_webitem, .item_thumb .ico_costume{background-position:0 -300px}
 .item_thumb .ico_coin{background-position:0 -150px}
 .item_thumb .ico_general{background-position:0 0}

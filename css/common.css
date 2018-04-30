@@ -448,7 +448,7 @@ a.anchor {display: block;position: relative;top: -160px;visibility: hidden;}
 
 /* NEWS */
 .cont_news .detail_black{margin-bottom:78px}
-.cont_news .bg_cover{background-image:img/back.gif}
+.cont_news .bg_cover{}
 .cont_news .tit_detail{float:left}
 .list_category{float:right;padding-top:22px}
 .list_category:after{display:block;clear:both;content:''}
@@ -613,7 +613,7 @@ a.anchor {display: block;position: relative;top: -160px;visibility: hidden;}
 .detail_sale .info_order del:after{position:absolute;top:12px;left:50%;width:109px;height:7px;margin-left:-50px;background-position:-90px -530px;content:''}
 /* ACCOUNT */
 .cont_account .detail_black{padding:63px 80px 56px;background:#fff}
-.cont_account .bg_cover{background-image:url(img/back.gif);margin-bottom:10%;}
+.cont_account .bg_cover{background-image:url();margin-bottom:10%;}
 .cont_account .tit_group{position:relative;padding-left:66px}
 .cont_account .tit_group .img_8bit{position:absolute;top:0;left:0}
 .cont_account .tit_group .ico_account{top:-3px;width:44px;height:50px;background-position:-320px -210px}
@@ -674,7 +674,7 @@ a.anchor {display: block;position: relative;top: -160px;visibility: hidden;}
 .group_coupon .txt_time{color:#7c7c7c;}
 .group_history .txt_time{color:#7c7c7c;}
 /* PAYMENT */
-.cont_payment .bg_cover{background-image:url(img/back.gif);margin-bottom:10%;}
+.cont_payment .bg_cover{background-image:url();margin-bottom:10%;}
 .cont_payment .detail_black{margin:-119px auto 117px;padding:56px 80px 53px;background:#fff}
 .cont_payment .detail_black:before, .cont_payment .detail_black:after{position:absolute;left:0;right:0;height:7px;background:url(https://akamai-webcdn.kgstatic.net/renewal/static/images/bg_zigzag.png) 0 0 repeat-x;content:''}
 .cont_payment .detail_black:before{top:-7px}
@@ -811,7 +811,7 @@ form .group_billing{padding:22px 0}
 /* LOGIN, CREATE ACCOUNT, FORGET PASSWORD */
 /*<a href="https://ibb.co/dRMgf7"><img src="https://preview.ibb.co/domsnn/Spoopy_Woods.gif" alt="Spoopy_Woods" border="0"></a>*/
 /*https://opengameart.org/sites/default/files/parallax-industrial-anim_x2_0.gif*/
-.cont_login .bg_cover{height:690px;background-image:url(img/back.gif)}
+.cont_login .bg_cover{height:690px;background-image:url()}
 .cont_login .detail_black{width:500px;min-height:572px;margin:0 auto;padding-bottom:126px}
 .cont_login .tit_detail{width:1280px;margin:0 -390px;padding:80px 0 2px;color:#fff;text-align:center;white-space:nowrap}
 .cont_login .tit_detail:after{content:none}

@@ -1,84 +1,16 @@
 <html>
 
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 	
-	<!--Web Site title--->
-	<title> 8-Bit Game Home</title>
-	<title><?php print $ptitle ?></title>
-	<link rel="icon" href="img/ZombieIcon.png"> <!--browser icon-->
-	<!------------------>
-	
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=1920, user-scalable=yes, maximum-scale=1">
-	
-	<!--Get Access to css-->
-	<!--link href="Black%20Desert%20Online%20Register_files/css.css" rel="stylesheet" type="text/css"-->
-	<!---Icons and fonts references---->
-	<link href="https://fonts.googleapis.com/css?family=Marcellus" rel="stylesheet" type="text/css">
-	<link rel="shortcut icon" href="img/ZombieIcon.png" type="image/x-icon">
-	<link rel="icon" href="img/ZombieIcon.png" type="image/x-icon">
-	<link rel="stylesheet" type="text/css" href="css/common.css">
-	<link rel="stylesheet" type="text/css" href="css/gallerycss.css" />
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link href rel="stylesheet" href="css/bootstrap.min.css">
-	
-	
-	<style>
-		@media (max-width: 1800px) {
-							.gnb_comm .link_gnb{padding:34px 21px !important}
-					}
-	</style>
-	
-
-</head>
+	<?php
+	include_once 'head.php';
+	?>
 
 
 
-<!-----START: Navigation bar----->
-
-<div class="inner_head">
-				
-	<ul class="gnb_comm">
-				
-				
-		<!--Home Temp-->
-		<li>
-		<a href="index.php" class="link_gnb">HOME<span class="img_8bit ico_arr"></span></a>
-		</li>
-		<!------------->		
-		<!---News dropdown menu---->
-		<li>
-		<a href="news.php" class="link_gnb">NEWS<span class="img_8bit ico_arr"></span></a>
-		<!--Deleted-->
-		</li>
-		<!--------------------------->
-						
-						
-						
-						
-		<!--DELETED-->
-						
-						
-
-				
-		<!----Login and register buttons----->
-		<div id="login"style="float:right;margin-right:10px">
-		<li><a href="login.php" class="link_gnb">LOGIN</a></li>
-		<li><a href="register.php" class="link_gnb">REGISTER</a></li>
-
-							
-							
-							
-		<!----Buy now button----->
-		<li><a href="buyform.php" class="">
-		<span class="btn_regist" style="margin-top:12%;">BUY NOW</span></a></li>
-		</div>
-		
-
-	</ul>
-</div>
-<!----END: of navigation bar------>	
+<?php
+	include_once 'navBarLogout.php';
+?>	
 <!--START: Body-->
 <body>
 	<!--START: Content-->
@@ -87,7 +19,7 @@
 			<div id="cMain">
 				<div id="mArticle">
 				<!--Cover Image Needed add in common.css-->
-					<div class="bg_cover"></div>
+					<?php include_once 'bgcover.php'; ?>
 					<!--TITLE GIF-->
 					<center><img style="" src="img/8BitGameGif.gif"/></center>
 					<div class="detail_black">
