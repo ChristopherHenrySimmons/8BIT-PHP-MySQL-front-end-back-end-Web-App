@@ -38,7 +38,7 @@
 								
 								<div class="box_tf">
 									<label class="img_8bit ico_email" for="email">Email</label> 
-									<input class="tf_comm" id="email" name="ACCOUNT_Email" placeholder="Email" type="text"> 
+									<input class="tf_comm" id="ACCOUNT_Email" name="ACCOUNT_Email" placeholder="Email" type="text"> 
 									<span class="img_8bit ico_error"></span>
 								</div>
 								<span class="txt_error"></span>

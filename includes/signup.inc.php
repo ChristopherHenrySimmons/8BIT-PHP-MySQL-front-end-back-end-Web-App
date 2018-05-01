@@ -2,13 +2,13 @@
 
 if(isset($_POST['submit'])){
 	include_once 'dbh.inc.php';
-	$Email = mysql_real_escape_string($conn, $_POST['ACCOUNT_Email']);
-	$Password = mysql_real_escape_string($conn, $_POST['ACCOUNT_Password']);
+	$ACCOUNT_Email = mysql_real_escape_string($conn, $_POST['ACCOUNT_Email']);
+	$ACCOUNT_Password = mysql_real_escape_string($conn, $_POST['ACCOUNT_Password']);
 	
 	//ERROR HANDLERS
 	//CHECK FOR EMPTY FIELDS
 	//ERROR FIX
-	if (empty($Email) || empty($Password)){
+	if (empty($ACCOUNT_Email) || empty($ACCOUNT_Password)){
 		
 		header("Location: ../register.php?register=empty");
 		exit();
@@ -17,7 +17,7 @@ if(isset($_POST['submit'])){
 		
 		//CHECK IF INPUT CHARACTERS ARE VALID
 		//Check if Email is valid
-	if (!filter_var ($Email, FILTER_VALIDATE_EMAIL)){
+	if (!filter_var ($ACCOUNT_Email, FILTER_VALIDATE_EMAIL)){
 			
 		header("Location: ../register.php?register=email");
 		exit();
@@ -36,9 +36,9 @@ if(isset($_POST['submit'])){
 			} else{
 				
 				//HASHING THE PASSWORD
-				$hashePwd = password_hash($Password, PASSWORD_DEFAULT);
+				$hashePwd = password_hash($ACCOUNT_Password, PASSWORD_DEFAULT);
 				//INSERT USER INTO DATABASE
-				$sql = "INSERT INTO ACCOUNT (ACCOUNT_Email, ACCOUNT_Password) VALUES('$Email', '$hashePwd');";
+				$sql = "INSERT INTO ACCOUNT (ACCOUNT_Email, ACCOUNT_Password) VALUES('$ACCOUNT_Email', '$hashePwd');";
 				
 				$result = mysqli_query($conn, $sql);
 				header("Location: ../register.php?register=success");
