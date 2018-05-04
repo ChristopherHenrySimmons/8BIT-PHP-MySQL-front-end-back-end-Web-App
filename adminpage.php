@@ -262,45 +262,38 @@ function showSlides(n) {
 								
 								<dd>
 								<div class="box_bit"> <input style="margin-top:10px; background:#4e8064;" class="bit_comm" id="userEmail" name="userEmail" type="text" ></div>
-						
+								<p>
+                    				<a href="create.php" class="btn btn-success">Create</a>
+                				</p>
 									<table id="ACCOUNT_TABLE">
-									  <tr>
-										<th>ACCOUNT_ID</th>
-										<th>EMAIL</th>
-										<th>PASSWORD</th>
-										<!--<th>ACCOUNT STATUS</th>-->
-									  </tr>
+										<tr>
+											<th>ACCOUNT_ID</th>
+											<th>EMAIL</th>
+											<th>PASSWORD</th>
+											<th>Action</th>
+										</tr>
 									  <!--PHP TABLE START-->
 									  <?php
-									  $conn = mysqli_connect("localhost","root","root","loginsystem");
-									  if ($conn-> connect_error) {
-										  die("Connection failed" . $ conn-> connect_error);							  
-									  }
-									  
-									  $sql = "SELECT ACCOUNT_ID, ACCOUNT_Email, ACCOUNT_Password from loginsystem";
-									  $result = $conn-> query($sql);
-									  
-									  if ($result-> num_rows > 0){
-										  while ($row = $result-> fetch_assoc()){
-											  echo "<tr><td>". $row[ACCOUNT_ID]"</td><td>". $row[ACCOUNT_Email] ."</td><td>" .$row[ACCOUNT_Password] ."</td></tr>";
-										  }
-										echo "</table>";
-									  }
-									  else{
-										  echo "0 result";
-									  }
-									  
-									  $conn-> close();
-									  ?>
-									  <!--PHP TABLE END-->
-									  <tr>
-										<td><input name="account_id" onfocus="if (this.value=='001') " type="text" value="001"></td>
-										<td><input name="email" onfocus="if (this.value=='FAKE@EMAIL.COM') " type="text" value="FAKE@EMAIL.COM"></td>
-										<td><input name="usertype" onfocus="if (this.value=='Member') " type="text" value="Member"></td>
-										<td><input name="account_status" onfocus="if (this.value=='0') " type="text" value="0"></td>
-										<!--0 or 1 ?-->
-									  </tr>
-									  
+										include 'database.php';
+										$pdo = Database::connect();
+										$sql = 'SELECT * FROM ACCOUNT ORDER BY ACCOUNT_ID DESC';
+										foreach ($pdo->query($sql) as $row) {
+													echo '<tr>';
+													echo '<td>'. $row['ACCOUNT_ID'] . '</td>';
+													echo '<td>'. $row['ACCOUNT_Email'] . '</td>';
+													echo '<td>'. $row['ACCOUNT_Password'] . '</td>';
+													echo '<td width=250>';
+													echo '<a class="btn" href="read.php?id='.$row['ACCOUNT_ID'].'">Read</a>';
+													echo ' ';
+													echo '<a class="btn btn-success" href="update.php?id='.$row['ACCOUNT_ID'].'">Update</a>';
+													echo ' ';
+													echo '<a class="btn btn-danger" href="delete.php?id='.$row['ACCOUNT_ID'].'">Delete</a>';
+													echo '</td>';
+													echo '</tr>';
+										}
+										Database::disconnect();
+										?>
+									    
 									  
 									  </tr>
 									</table>
