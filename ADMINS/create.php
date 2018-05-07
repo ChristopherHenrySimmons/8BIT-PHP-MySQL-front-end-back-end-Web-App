@@ -5,26 +5,26 @@
  
     if ( !empty($_POST)) {
         // keep track validation errors
-        $ACCOUNT_EmailError = null;
-        $ACCOUNT_PasswordError = null;
+        $ADMINS_EmailError = null;
+        $ADMINS_PasswordError = null;
          
         // keep track post values
-        $ACCOUNT_Email = $_POST['ACCOUNT_Email'];
-        $ACCOUNT_Password = $_POST['ACCOUNT_Password'];
+        $ADMINS_Email = $_POST['ADMINS_Email'];
+        $ADMINS_Password = $_POST['ADMINS_Password'];
          
         // validate input
         $valid = true;
                  
-        if (empty($ACCOUNT_Email)) {
-            $ACCOUNT_EmailError = 'Please enter Email Address';
+        if (empty($ADMINS_Email)) {
+            $ADMINS_EmailError = 'Please enter Email Address';
             $valid = false;
-        } else if ( !filter_var($ACCOUNT_Email,FILTER_VALIDATE_EMAIL) ) {
-            $ACCOUNT_EmailError = 'Please enter a valid Email Address';
+        } else if ( !filter_var($ADMINS_Email,FILTER_VALIDATE_EMAIL) ) {
+            $ADMINS_EmailError = 'Please enter a valid Email Address';
             $valid = false;
         }
          
-        if (empty($ACCOUNT_Password)) {
-            $ACCOUNT_PasswordError = 'Please enter Password';
+        if (empty($ADMINS_Password)) {
+            $ADMINS_PasswordError = 'Please enter Password';
             $valid = false;
         }
          
@@ -32,9 +32,9 @@
         if ($valid) {
             $pdo = Database::connect();
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sql = "INSERT INTO customers (ACCOUNT_Email, ACCOUNT_Password) values(?, ?, ?)";
+            $sql = "INSERT INTO customers (ADMINS_Email, ADMINS_Password) values(?, ?, ?)";
             $q = $pdo->prepare($sql);
-            $q->execute(array($ACCOUNT_Email, $ACCOUNT_Password));
+            $q->execute(array($ADMINS_Email, $ADMINS_Password));
             Database::disconnect();
             header("Location: adminpage.php");
         }
@@ -58,21 +58,21 @@
                     </div>
              
                     <form class="form-horizontal" action="create.php" method="post">
-                      <div class="control-group <?php echo !empty($emailError)?'error':'';?>">
+                      <div class="control-group <?php echo !empty($ADMINS_EmailError)?'error':'';?>">
                         <label class="control-label">Email Address</label>
                         <div class="controls">
-                            <input ACCOUNT_Email="ACCOUNT_Email" type="text" placeholder="Email Address" value="<?php echo !empty($email)?$email:'';?>">
-                            <?php if (!empty($emailError)): ?>
-                                <span class="help-inline"><?php echo $emailError;?></span>
+                            <input ADMINS_Email="ADMINS_Email" type="text" placeholder="Email Address" value="<?php echo !empty($ADMINS_Email)?$ADMINS_Email:'';?>">
+                            <?php if (!empty($ADMINS_EmailError)): ?>
+                                <span class="help-inline"><?php echo $ADMINS_EmailError;?></span>
                             <?php endif;?>
                         </div>
                       </div>
-                      <div class="control-group <?php echo !empty($PasswordError)?'error':'';?>">
+                      <div class="control-group <?php echo !empty($ADMINS_PasswordError)?'error':'';?>">
                         <label class="control-label">Password</label>
                         <div class="controls">
-                            <input ACCOUNT_Email="ACCOUNT_Password" type="text"  placeholder="Password" value="<?php echo !empty($Password)?$Password:'';?>">
-                            <?php if (!empty($PasswordError)): ?>
-                                <span class="help-inline"><?php echo $PasswordError;?></span>
+                            <input ADMINS_Password="ADMINS_Password" type="text"  placeholder="Password" value="<?php echo !empty($ADMINS_Password)?$ADMINS_Password:'';?>">
+                            <?php if (!empty($ADMINS_PasswordError)): ?>
+                                <span class="help-inline"><?php echo $ADMINS_PasswordError;?></span>
                             <?php endif;?>
                         </div>
                       </div>

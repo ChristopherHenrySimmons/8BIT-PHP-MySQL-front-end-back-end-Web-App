@@ -1,38 +1,48 @@
 <?php
     require 'database.php';
  
-    $id = null;
-    if ( !empty($_GET['id'])) {
-        $id = $_REQUEST['id'];
+    $ARTICLE_ID = null;
+    if ( !empty($_GET['ARTICLE_ID'])) {
+        $ARTICLE_ID = $_REQUEST['ARTICLE_ID'];
     }
      
-    if ( null==$id ) {
+    if ( null==$ARTICLE_ID ) {
         header("Location: adminpage.php");
     }
      
     if ( !empty($_POST)) {
         // keep track validation errors
-        
-        $ACCOUNT_EmailError = null;
-        $ACCOUNT_Password = null;
-         
+        $ARTICLE_TitleError = null;
+        $ARTICLE_CategoryError = null;
+        $ARTICLE_DateError = null;
+        $ARTICLE_MessageError = null;
+                 
         // keep track post values
-        $ACCOUNT_Email = $_POST['ACCOUNT_Email'];
-        $ACCOUNT_Password = $_POST['ACCOUNT_Password'];
+        $ARTICLE_Title = $_POST['ARTICLE_Title'];
+        $ARTICLE_Category = $_POST['ARTICLE_Category'];
+        $ARTICLE_Date = $_POST['ARTICLE_Date'];
+        $ARTICLE_Message = $_POST['ARTICLE_Message'];
          
         // validate input
         $valid = true;
                  
-        if (empty($ACCOUNT_Email)) {
-            $ACCOUNT_EmailError = 'Please enter Email Address';
-            $valid = false;
-        } else if ( !filter_var($ACCOUNT_Email,FILTER_VALIDATE_EMAIL) ) {
-            $ACCOUNT_EmailError = 'Please enter a valid Email Address';
+        if (empty($ARTICLE_Title)) {
+            $ARTICLE_TitleError = 'Please enter Title';
             $valid = false;
         }
          
-        if (empty($ACCOUNT_Password)) {
-            $ACCOUNT_Password = 'Please enter Password';
+        if (empty($ARTICLE_Category)) {
+            $ARTICLE_CategoryError = 'Please enter Category';
+            $valid = false;
+        }
+
+        if (empty($ARTICLE_Date)) {
+            $ARTICLE_DateError = 'Please enter Date';
+            $valid = false;
+        }
+
+        if (empty($ARTICLE_Message)) {
+            $ARTICLE_MessageError = 'Please enter Message';
             $valid = false;
         }
          
@@ -40,21 +50,23 @@
         if ($valid) {
             $pdo = Database::connect();
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sql = "UPDATE ACCOUNT  set ACCOUNT_Password = ?, ACCOUNT_Email = ? WHERE id = ?";
+            $sql = "UPDATE NEWS  set ARTICLE_Title = ?, ARTICLE_Category = ?, ARTICLE_Date = ?, ARTICLE_Message =? WHERE id = ?";
             $q = $pdo->prepare($sql);
-            $q->execute(array($ACCOUNT_Email,$id));
+            $q->execute(array($ARTICLE_Title,$ARTICLE_Category,$ARTICLE_Date,$ARTICLE_Message));
             Database::disconnect();
             header("Location: adminpage.php");
         }
     } else {
         $pdo = Database::connect();
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "SELECT * FROM ACCOUNT where id = ?";
+        $sql = "SELECT * FROM NEWS where ARTICLE_ID = ?";
         $q = $pdo->prepare($sql);
-        $q->execute(array($id));
+        $q->execute(array($ARTICLE_ID));
         $data = $q->fetch(PDO::FETCH_ASSOC);
-        $ACCOUNT_Password = $data['ACCOUNT_Password'];
-        $ACCOUNT_Email = $data['ACCOUNT_Email'];
+        $ARTICLE_Title = $data['ARTICLE_Title'];
+        $ARTICLE_Category = $data['ARTICLE_Category'];
+        $ARTICLE_Date = $data['ARTICLE_Date'];
+        $ARTICLE_Message = $data['ARTICLE_Message'];
         Database::disconnect();
     }
 ?>
@@ -75,29 +87,53 @@
                         <h3>Update a Account</h3>
                     </div>
              
-                    <form class="form-horizontal" action="update.php?id=<?php echo $id?>" method="post">
-                      <div class="control-group <?php echo !empty($ACCOUNT_Password)?'error':'';?>">
-                        <label class="control-label">Password</label>
+                    <form class="form-horizontal" action="update.php?id=<?php echo $ARTICLE_ID?>" method="post">
+                      <div class="control-group <?php echo !empty($ARTICLE_TitleError)?'error':'';?>">
+                        <label class="control-label">ARTICLE_Title</label>
                         <div class="controls">
-                            <input name="ACCOUNT_Password" type="text"  placeholder="Name" value="<?php echo !empty($name)?$name:'';?>">
-                            <?php if (!empty($ACCOUNT_Password)): ?>
-                                <span class="help-inline"><?php echo $ACCOUNT_Password;?></span>
-                            <?php endif; ?>
-                        </div>
-                      </div>
-                      <div class="control-group <?php echo !empty($ACCOUNT_EmailError)?'error':'';?>">
-                        <label class="control-label">Email Address</label>
-                        <div class="controls">
-                            <input name="ACCOUNT_Email" type="text" placeholder="Email Address" value="<?php echo !empty($ACCOUNT_Email)?$ACCOUNT_Email:'';?>">
-                            <?php if (!empty($ACCOUNT_EmailError)): ?>
-                                <span class="help-inline"><?php echo $ACCOUNT_EmailError;?></span>
+                            <input ARTICLE_Title="ARTICLE_Title" type="text" placeholder="Title" value="<?php echo !empty($ARTICLE_Title)?$ARTICLE_Title:'';?>">
+                            <?php if (!empty($ARTICLE_TitleError)): ?>
+                                <span class="help-inline"><?php echo $ARTICLE_TitleError;?></span>
                             <?php endif;?>
                         </div>
                       </div>
+
+                      <div class="control-group <?php echo !empty($ARTICLE_CategoryError)?'error':'';?>">
+                        <label class="control-label">Category</label>
+                        <div class="controls">
+                            <input ARTICLE_Category="ARTICLE_Category" type="text"  placeholder="Category" value="<?php echo !empty($ARTICLE_Category)?$ARTICLE_Category:'';?>">
+                            <?php if (!empty($ARTICLE_CategoryError)): ?>
+                                <span class="help-inline"><?php echo $ARTICLE_CategoryError;?></span>
+                            <?php endif;?>
+                        </div>
+                      </div>
+
+                      <div class="control-group <?php echo !empty($ARTICLE_DateError)?'error':'';?>">
+                        <label class="control-label">Date</label>
+                        <div class="controls">
+                        <!--type date work?-->
+                            <input ARTICLE_Date="ARTICLE_Date" type="date"  placeholder="dd/mm/yy" value="<?php echo !empty($ARTICLE_Date)?$ARTICLE_Date:'';?>">
+                            <?php if (!empty($ARTICLE_DateError)): ?>
+                                <span class="help-inline"><?php echo $ARTICLE_DateError;?></span>
+                            <?php endif;?>
+                        </div>
+                      </div>
+
+                      <div class="control-group <?php echo !empty($ARTICLE_MessageError)?'error':'';?>">
+                        <label class="control-label">Message</label>
+                        <div class="controls">
+                            <input ARTICLE_Message="ARTICLE_Message" type="text"  placeholder="Howdy" value="<?php echo !empty($ARTICLE_Message)?$ARTICLE_Message:'';?>">
+                            <?php if (!empty($ARTICLE_MessageError)): ?>
+                                <span class="help-inline"><?php echo $ARTICLE_MessageError;?></span>
+                            <?php endif;?>
+                        </div>
+                      </div>
+                      
                       <div class="form-actions">
                           <button type="submit" class="btn btn-success">Update</button>
                           <a class="btn" href="index.php">Back</a>
                         </div>
+                    
                     </form>
                 </div>
                  

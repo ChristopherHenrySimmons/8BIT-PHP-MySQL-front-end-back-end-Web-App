@@ -13,26 +13,26 @@
     if ( !empty($_POST)) {
         // keep track validation errors
         
-        $ACCOUNT_EmailError = null;
-        $ACCOUNT_Password = null;
+        $ADMINS_EmailError = null;
+        $ADMINS_Password = null;
          
         // keep track post values
-        $ACCOUNT_Email = $_POST['ACCOUNT_Email'];
-        $ACCOUNT_Password = $_POST['ACCOUNT_Password'];
+        $ADMINS_Email = $_POST['ADMINS_Email'];
+        $ADMINS_Password = $_POST['ADMINS_Password'];
          
         // validate input
         $valid = true;
                  
-        if (empty($ACCOUNT_Email)) {
-            $ACCOUNT_EmailError = 'Please enter Email Address';
+        if (empty($ADMINS_Email)) {
+            $ADMINS_EmailError = 'Please enter Email Address';
             $valid = false;
-        } else if ( !filter_var($ACCOUNT_Email,FILTER_VALIDATE_EMAIL) ) {
-            $ACCOUNT_EmailError = 'Please enter a valid Email Address';
+        } else if ( !filter_var($ADMINS_Email,FILTER_VALIDATE_EMAIL) ) {
+            $ADMINS_EmailError = 'Please enter a valid Email Address';
             $valid = false;
         }
          
-        if (empty($ACCOUNT_Password)) {
-            $ACCOUNT_Password = 'Please enter Password';
+        if (empty($ADMINS_Password)) {
+            $ADMINS_Password = 'Please enter Password';
             $valid = false;
         }
          
@@ -40,9 +40,9 @@
         if ($valid) {
             $pdo = Database::connect();
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sql = "UPDATE ACCOUNT  set ACCOUNT_Password = ?, ACCOUNT_Email = ? WHERE id = ?";
+            $sql = "UPDATE ACCOUNT  set ADMINS_Password = ?, ADMINS_Email = ? WHERE id = ?";
             $q = $pdo->prepare($sql);
-            $q->execute(array($ACCOUNT_Email,$id));
+            $q->execute(array($ADMINS_Email,$id));
             Database::disconnect();
             header("Location: adminpage.php");
         }
@@ -53,8 +53,8 @@
         $q = $pdo->prepare($sql);
         $q->execute(array($id));
         $data = $q->fetch(PDO::FETCH_ASSOC);
-        $ACCOUNT_Password = $data['ACCOUNT_Password'];
-        $ACCOUNT_Email = $data['ACCOUNT_Email'];
+        $ADMINS_Password = $data['ADMINS_Password'];
+        $ADMINS_Email = $data['ADMINS_Email'];
         Database::disconnect();
     }
 ?>
@@ -76,21 +76,21 @@
                     </div>
              
                     <form class="form-horizontal" action="update.php?id=<?php echo $id?>" method="post">
-                      <div class="control-group <?php echo !empty($ACCOUNT_Password)?'error':'';?>">
+                      <div class="control-group <?php echo !empty($ADMINS_Password)?'error':'';?>">
                         <label class="control-label">Password</label>
                         <div class="controls">
-                            <input name="ACCOUNT_Password" type="text"  placeholder="Name" value="<?php echo !empty($name)?$name:'';?>">
-                            <?php if (!empty($ACCOUNT_Password)): ?>
-                                <span class="help-inline"><?php echo $ACCOUNT_Password;?></span>
+                            <input name="ADMINS_Password" type="text"  placeholder="Name" value="<?php echo !empty($name)?$name:'';?>">
+                            <?php if (!empty($ADMINS_Password)): ?>
+                                <span class="help-inline"><?php echo $ADMINS_Password;?></span>
                             <?php endif; ?>
                         </div>
                       </div>
-                      <div class="control-group <?php echo !empty($ACCOUNT_EmailError)?'error':'';?>">
+                      <div class="control-group <?php echo !empty($ADMINS_EmailError)?'error':'';?>">
                         <label class="control-label">Email Address</label>
                         <div class="controls">
-                            <input name="ACCOUNT_Email" type="text" placeholder="Email Address" value="<?php echo !empty($ACCOUNT_Email)?$ACCOUNT_Email:'';?>">
-                            <?php if (!empty($ACCOUNT_EmailError)): ?>
-                                <span class="help-inline"><?php echo $ACCOUNT_EmailError;?></span>
+                            <input name="ADMINS_Email" type="text" placeholder="Email Address" value="<?php echo !empty($ADMINS_Email)?$ADMINS_Email:'';?>">
+                            <?php if (!empty($ADMINS_EmailError)): ?>
+                                <span class="help-inline"><?php echo $ADMINS_EmailError;?></span>
                             <?php endif;?>
                         </div>
                       </div>

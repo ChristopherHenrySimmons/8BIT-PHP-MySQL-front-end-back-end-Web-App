@@ -5,26 +5,37 @@
  
     if ( !empty($_POST)) {
         // keep track validation errors
-        $ACCOUNT_EmailError = null;
-        $ACCOUNT_PasswordError = null;
-         
+        $ARTICLE_TitleError = null;
+        $ARTICLE_CategoryError = null;
+        $ARTICLE_DateError = null;
+        $ARTICLE_MessageError = null;
+                 
         // keep track post values
-        $ACCOUNT_Email = $_POST['ACCOUNT_Email'];
-        $ACCOUNT_Password = $_POST['ACCOUNT_Password'];
+        $ARTICLE_Title = $_POST['ARTICLE_Title'];
+        $ARTICLE_Category = $_POST['ARTICLE_Category'];
+        $ARTICLE_Date = $_POST['ARTICLE_Date'];
+        $ARTICLE_Message = $_POST['ARTICLE_Message'];
          
         // validate input
         $valid = true;
                  
-        if (empty($ACCOUNT_Email)) {
-            $ACCOUNT_EmailError = 'Please enter Email Address';
-            $valid = false;
-        } else if ( !filter_var($ACCOUNT_Email,FILTER_VALIDATE_EMAIL) ) {
-            $ACCOUNT_EmailError = 'Please enter a valid Email Address';
+        if (empty($ARTICLE_Title)) {
+            $ARTICLE_TitleError = 'Please enter Title';
             $valid = false;
         }
          
-        if (empty($ACCOUNT_Password)) {
-            $ACCOUNT_PasswordError = 'Please enter Password';
+        if (empty($ARTICLE_Category)) {
+            $ARTICLE_CategoryError = 'Please enter Category';
+            $valid = false;
+        }
+
+        if (empty($ARTICLE_Date)) {
+            $ARTICLE_DateError = 'Please enter Date';
+            $valid = false;
+        }
+
+        if (empty($ARTICLE_Message)) {
+            $ARTICLE_MessageError = 'Please enter Message';
             $valid = false;
         }
          
@@ -32,9 +43,9 @@
         if ($valid) {
             $pdo = Database::connect();
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sql = "INSERT INTO customers (ACCOUNT_Email, ACCOUNT_Password) values(?, ?, ?)";
+            $sql = "INSERT INTO customers (ARTICLE_Title, ARTICLE_Category, ARTICLE_Date, ARTICLE_Message) values(?, ?, ?)";
             $q = $pdo->prepare($sql);
-            $q->execute(array($ACCOUNT_Email, $ACCOUNT_Password));
+            $q->execute(array($ARTICLE_Title, $ARTICLE_Category, $ARTICLE_Date, $ARTICLE_Message));
             Database::disconnect();
             header("Location: adminpage.php");
         }
@@ -58,24 +69,47 @@
                     </div>
              
                     <form class="form-horizontal" action="create.php" method="post">
-                      <div class="control-group <?php echo !empty($emailError)?'error':'';?>">
-                        <label class="control-label">Email Address</label>
+                      <div class="control-group <?php echo !empty($ARTICLE_TitleError)?'error':'';?>">
+                        <label class="control-label">ARTICLE_Title</label>
                         <div class="controls">
-                            <input ACCOUNT_Email="ACCOUNT_Email" type="text" placeholder="Email Address" value="<?php echo !empty($email)?$email:'';?>">
-                            <?php if (!empty($emailError)): ?>
-                                <span class="help-inline"><?php echo $emailError;?></span>
+                            <input ARTICLE_Title="ARTICLE_Title" type="text" placeholder="Title" value="<?php echo !empty($ARTICLE_Title)?$ARTICLE_Title:'';?>">
+                            <?php if (!empty($ARTICLE_TitleError)): ?>
+                                <span class="help-inline"><?php echo $ARTICLE_TitleError;?></span>
                             <?php endif;?>
                         </div>
                       </div>
-                      <div class="control-group <?php echo !empty($PasswordError)?'error':'';?>">
-                        <label class="control-label">Password</label>
+
+                      <div class="control-group <?php echo !empty($ARTICLE_CategoryError)?'error':'';?>">
+                        <label class="control-label">Category</label>
                         <div class="controls">
-                            <input ACCOUNT_Email="ACCOUNT_Password" type="text"  placeholder="Password" value="<?php echo !empty($Password)?$Password:'';?>">
-                            <?php if (!empty($PasswordError)): ?>
-                                <span class="help-inline"><?php echo $PasswordError;?></span>
+                            <input ARTICLE_Category="ARTICLE_Category" type="text"  placeholder="Category" value="<?php echo !empty($ARTICLE_Category)?$ARTICLE_Category:'';?>">
+                            <?php if (!empty($ARTICLE_CategoryError)): ?>
+                                <span class="help-inline"><?php echo $ARTICLE_CategoryError;?></span>
                             <?php endif;?>
                         </div>
                       </div>
+
+                      <div class="control-group <?php echo !empty($ARTICLE_DateError)?'error':'';?>">
+                        <label class="control-label">Date</label>
+                        <div class="controls">
+                        <!--type date work?-->
+                            <input ARTICLE_Date="ARTICLE_Date" type="date"  placeholder="dd/mm/yy" value="<?php echo !empty($ARTICLE_Date)?$ARTICLE_Date:'';?>">
+                            <?php if (!empty($ARTICLE_DateError)): ?>
+                                <span class="help-inline"><?php echo $ARTICLE_DateError;?></span>
+                            <?php endif;?>
+                        </div>
+                      </div>
+
+                      <div class="control-group <?php echo !empty($ARTICLE_MessageError)?'error':'';?>">
+                        <label class="control-label">Message</label>
+                        <div class="controls">
+                            <input ARTICLE_Message="ARTICLE_Message" type="text"  placeholder="Howdy" value="<?php echo !empty($ARTICLE_Message)?$ARTICLE_Message:'';?>">
+                            <?php if (!empty($ARTICLE_MessageError)): ?>
+                                <span class="help-inline"><?php echo $ARTICLE_MessageError;?></span>
+                            <?php endif;?>
+                        </div>
+                      </div>
+
                       <div class="form-actions">
                           <button type="submit" class="btn btn-success">Create</button>
                           <a class="btn" href="index.php">Back</a>

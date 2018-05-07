@@ -1,21 +1,21 @@
 <?php
     require 'database.php';
-    $ACCOUNT_ID = 0;
+    $ARTICLE_ID = 0;
      
-    if ( !empty($_GET['ACCOUNT_ID'])) {
-        $ACCOUNT_ID = $_REQUEST['ACCOUNT_ID'];
+    if ( !empty($_GET['ARTICLE_ID'])) {
+        $ARTICLE_ID = $_REQUEST['ARTICLE_ID'];
     }
      
     if ( !empty($_POST)) {
         // keep track post values
-        $ACCOUNT_ID = $_POST['ACCOUNT_ID'];
+        $ARTICLE_ID = $_POST['ARTICLE_ID'];
          
         // delete data
         $pdo = Database::connect();
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "DELETE FROM customers  WHERE ACCOUNT_ID = ?";
+        $sql = "DELETE FROM customers  WHERE ARTICLE_ID = ?";
         $q = $pdo->prepare($sql);
-        $q->execute(array($ACCOUNT_ID));
+        $q->execute(array($ARTICLE_ID));
         Database::disconnect();
         header("Location: index.php");
          
@@ -39,7 +39,7 @@
                     </div>
                      
                     <form class="form-horizontal" action="delete.php" method="post">
-                      <input type="hidden" name="ACCOUNT_ID" value="<?php echo $ACCOUNT_ID;?>"/>
+                      <input type="hidden" name="ARTICLE_ID" value="<?php echo $ARTICLE_ID;?>"/>
                       <p class="alert alert-error">Are you sure to delete ?</p>
                       <div class="form-actions">
                           <button type="submit" class="btn btn-danger">Yes</button>

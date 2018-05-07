@@ -70,7 +70,8 @@
                       <div class="control-group <?php echo !empty($PasswordError)?'error':'';?>">
                         <label class="control-label">Password</label>
                         <div class="controls">
-                            <input ACCOUNT_Email="ACCOUNT_Password" type="text"  placeholder="Password" value="<?php echo !empty($Password)?$Password:'';?>">
+                        <!--<input ACCOUNT_Email?-->
+                            <input ACCOUNT_Password="ACCOUNT_Password" type="text"  placeholder="Password" value="<?php echo !empty($Password)?$Password:'';?>">
                             <?php if (!empty($PasswordError)): ?>
                                 <span class="help-inline"><?php echo $PasswordError;?></span>
                             <?php endif;?>

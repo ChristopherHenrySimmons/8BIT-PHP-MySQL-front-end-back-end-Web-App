@@ -1,8 +1,8 @@
 <?php
     require 'database.php';
     $id = null;
-    if ( !empty($_GET['id'])) {
-        $id = $_REQUEST['id'];
+    if ( !empty($_GET['ARTICLE_ID'])) {
+        $id = $_REQUEST['ARTICLE_ID'];
     }
      
     if ( null==$id ) {
@@ -10,7 +10,7 @@
     } else {
         $pdo = Database::connect();
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "SELECT * FROM ACCOUNT where ACCOUNT_ID = ?";
+        $sql = "SELECT * FROM NEWS where ARTICLE_ID = ?";
         $q = $pdo->prepare($sql);
         $q->execute(array($id));
         $data = $q->fetch(PDO::FETCH_ASSOC);
@@ -39,7 +39,7 @@
                         <label class="control-label">Password</label>
                         <div class="controls">
                             <label class="checkbox">
-                                <?php echo $data['ACCOUNT_Password'];?>
+                                <?php echo $data['NEWS_Password'];?>
                             </label>
                         </div>
                       </div>
@@ -47,7 +47,7 @@
                         <label class="control-label">Email Address</label>
                         <div class="controls">
                             <label class="checkbox">
-                                <?php echo $data['ACCOUNT_Email'];?>
+                                <?php echo $data['NEWS_Email'];?>
                             </label>
                         </div>
                       </div>
