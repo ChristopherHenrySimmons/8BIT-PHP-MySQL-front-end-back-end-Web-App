@@ -27,7 +27,7 @@
 						<ul class="list_category">
 							
 							<li class="on">
-								<a class="link_category" href="news.php">UPDATES</a>
+								<a class="link_category" href="NewsUpdates.php">UPDATES</a>
 							</li>
 						</ul>
 					</div>

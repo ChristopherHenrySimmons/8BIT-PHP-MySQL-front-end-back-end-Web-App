@@ -3,66 +3,13 @@
 	<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 	<?php
 	include_once 'head.php';
+	include_once 'navBarLoginAdmin.php';
 	?>
 
 <body>
 	
-	
-
-	
 
 
-<!-----Navigation bar----->
-
-<div class="inner_head">
-				
-<ul class="gnb_comm">
-			
-			
-<!--Home Temp-->
-<li>
-<a href="index.php" class="link_gnb">HOME<span class="img_8bit ico_arr"></span></a>
-</li>
-<!------------->		
-<!---News dropdown menu---->
-<li>
-<a href="news.php" class="link_gnb">NEWS<span class="img_8bit ico_arr"></span></a>
-<!--Deleted-->
-</li>
-<!--------------------------->
-				
-				
-				
-				
-<!--DELETED-->
-				
-				
-<!--DELETED-->
-		
-<!----Login and register buttons----->
-<div id="login"style="float:right;margin-right:10px">
-<li>
-						<a href="adminpage.php" class="link_gnb">ACCOUNT</a>
-						<div class="gnb_sub">
-							<ul class="list_sub">
-								
-								<li><a href="index.php" class="link_gnb_sub">LOGOUT</a></li>
-							</ul>
-						</div>
-					</li>
-<!--DELETED-->
-					
-					
-					
-<!----Buy now button----->
-<li><a href="buyform.php" class="">
-<span class="btn_regist" style="margin-top:12%;">BUY NOW</span></a></li>
-</div>
-</div>	
-
-</ul>
-</div>
-<!----End of navigation bar------>	
 
 <hr class="hide">
 	<div class="cont_account" id="kakaoContent">
@@ -75,46 +22,45 @@
 					</div>
 					<h3 class="tit_group"><span class="img_black ico_account"></span>ADMIN INFO</h3>
 					<div class="group_detail group_account">
-						<dl class="list_regist">
-							<dt>EMAIL</dt>
-							<dd>ADMIN@8BITMAIL.com</dd>
-						</dl>
-						<dl id="password" class="list_regist list_password">
-							<dt>PASSWORD</dt>
-							<dd><button class="btn_regist" id="changePassword" type="button">CHANGE PASSWORD</button></dd>
-						</dl>
-						<dl id="password_change" class="list_regist lab_comm" style="display:none;">
-							<dt>PASSWORD</dt>
-							<dd>
-								<form id="passwordForm" method="POST">
-									<div class="group_set curPwd">
-										
-										<div class="box_bit">
-											<label class="screen_out" for="currentPw">Current password</label> <input class="bit_comm" id="currentPw" name="changePw" placeholder="Current password" type="password"> <span class="img_black ico_error"></span>
-										</div>
-										<span class="txt_error"></span>
-									</div>
-									<div class="group_set newPwd">
-										
-										<div class="box_bit">
-											<label class="screen_out" for="newPw">New password</label> <input class="bit_comm" id="newPw" name="changePw" placeholder="New password" type="password"> <span class="img_black ico_error"></span>
-										</div>
-										<span class="txt_error"></span>
-									</div>
-									<div class="group_set confirmPwd">
-										
-										<div class="box_bit">
-											<label class="screen_out" for="confirmPw">Confirm password</label> <input class="bit_comm" id="confirmPw" name="changePw" placeholder="Confirm password" type="password"> <span class="img_black ico_error"></span>
-										</div>
-										<button class="btn_regist btn_change" type="submit">Save changes</button>
-										<span class="txt_error"></span>
-									</div>
-								</form>
-							</dd>
-						</dl>
-						
-						
-						
+
+								<dd>
+								<div class="box_bit"> <input style="margin-top:10px; background:#4e8064;" class="bit_comm" id="userEmail" name="userEmail" type="text" ></div>
+								<p>
+                    				<a href="ADMINS/create.php" class="btn btn-success">Create</a>
+                				</p>
+									<table id="ADMIN_TABLE">
+										<tr>
+											<th>ADMINS_ID</th>
+											<th>EMAIL</th>
+											<th>PASSWORD</th>
+											<th>ACTION</th>
+										</tr>
+									  <!--PHP TABLE START-->
+									  <?php
+										include 'database.php';
+										$pdo = Database::connect();
+										$sql = 'SELECT * FROM ADMINS ORDER BY ADMINS_ID DESC';
+										foreach ($pdo->query($sql) as $row) {
+													echo '<tr>';
+													echo '<td>'. $row['ADMINS_ID'] . '</td>';
+													echo '<td>'. $row['ADMINS_Email'] . '</td>';
+													echo '<td>'. $row['ADMINS_Password'] . '</td>';
+													echo '<td width=250>';
+													echo '<a class="btn" href="ADMINS/read.php?id='.$row['ADMINS_ID'].'">Read</a>';
+													echo ' ';
+													echo '<a class="btn btn-success" href="ADMINS/update.php?id='.$row['ADMINS_ID'].'">Update</a>';
+													echo ' ';
+													echo '<a class="btn btn-danger" href="ADMINS/delete.php?id='.$row['ADMINS_ID'].'">Delete</a>';
+													echo '</td>';
+													echo '</tr>';
+										}
+										Database::disconnect();
+										?>
+									    
+									  
+									  </tr>
+									</table>
+								</dd>					
 					</div>
 					<!--SCREENSHOT MANAGEMENT-->
 					<form id="screenshotManagement" name="userManagement" method="POST" action="userManagement.php" autocomplete="on">
@@ -133,100 +79,29 @@
 
 <div class="row">
   <div class="">
-    <img onmouseover="" style="cursor: pointer; width:200px; float:left; position:relative; margin-right:68px;" src="img/screenshot001.png" onclick="openModal();currentSlide(1)" class="hover-shadow">
-  
-    <img onmouseover="" style="cursor: pointer; width:200px; float:left; position:relative; margin-right:68px;" src="img/screenshot002.png" onclick="openModal();currentSlide(2)" class="hover-shadow">
-  
-    <img onmouseover="" style="cursor: pointer; width:200px; float:left; position:relative; margin-right:68px;" src="img/screenshot003.png" onclick="openModal();currentSlide(3)" class="hover-shadow">
-  
-    <img onmouseover="" style="cursor: pointer; width:200px; float:left; position:relative; " src="img/screenshot004.png" onclick="openModal();currentSlide(4)" class="hover-shadow">
+	<?php
+		include 'database.php';
+		$pdo = Database::connect();
+		$sql = 'SELECT * FROM IMAGES ORDER BY IMAGES_ID DESC';
+			if(!$db) {
+				echo mysql_error();
+			}
+
+			$q = "SELECT IMAGES_Img FROM IMAGES where IMAGES_ID=1";
+			$r = mysql_query ("$q",$conn);
+			if($r) {
+				while($row = mysql_fetch_array($r)) {
+					header ("Content-type: image/jpeg");       
+			echo $row ["IMAGES_Img"];
+				}
+			}else{
+				echo mysql_error();
+			}
+		?>
   </div>
 </div>
 </dd>
 
-
-<!-- The Modal/Lightbox -->
-<!-- ERROR RESALUTION AND/OR POSTION OF NEXT PRE -->
-<div id="myModal" class="modal">
-  <span class="close cursor" onclick="closeModal()">&times;</span>
-  
-  <div class="modal-content">
-
-    <div class="mySlides">
-      <div class="numbertext">1 / 4</div>
-      <img src="img/screenshot001.png" style="width:100%; height:600px;">
-    </div>
-
-    <div class="mySlides">
-      <div class="numbertext">2 / 4</div>
-      <img src="img/screenshot002.png" style="width:100%; height:600px;">
-    </div>
-
-    <div class="mySlides">
-      <div class="numbertext">3 / 4</div>
-      <img src="img/screenshot003.png" style="width:100%; height:600px;">
-    </div>
-
-    <div class="mySlides">
-      <div class="numbertext">4 / 4</div>
-      <img src="img/screenshot004.png" style="width:100%; height:600px;">
-    </div>
-
-    <!-- Next/previous controls -->
-    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-    <a class="next" onclick="plusSlides(1)">&#10095;</a>
-
-    <!-- Caption text -->
-    <div class="caption-container">
-      <p id="caption"></p>
-    </div>
-
-   
-  </div>
-</div>
-<script>
-// Open the Modal
-function openModal() {
-  document.getElementById('myModal').style.display = "block";
-}
-
-// Close the Modal
-function closeModal() {
-  document.getElementById('myModal').style.display = "none";
-}
-
-var slideIndex = 1;
-showSlides(slideIndex);
-
-// Next/previous controls
-function plusSlides(n) {
-  showSlides(slideIndex += n);
-}
-
-// Thumbnail image controls
-function currentSlide(n) {
-  showSlides(slideIndex = n);
-}
-
-function showSlides(n) {
-  var i;
-  var slides = document.getElementsByClassName("mySlides");
-  var dots = document.getElementsByClassName("demo");
-  var captionText = document.getElementById("caption");
-  if (n > slides.length) {slideIndex = 1}
-  if (n < 1) {slideIndex = slides.length}
-  for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";
-  }
-  for (i = 0; i < dots.length; i++) {
-    dots[i].className = dots[i].className.replace(" active", "");
-  }
-  slides[slideIndex-1].style.display = "block";
-  dots[slideIndex-1].className += " active";
-  captionText.innerHTML = dots[slideIndex-1].alt;
-}
-
-</script>
 <!--END IMAGE-->
 							
 							</dt>
@@ -241,7 +116,7 @@ function showSlides(n) {
 													<input type="submit" value="Upload Image" name="submit" style="background-color:#4e8064;cursor: pointer;">
 													</form>
 													<!--EDIT PHP OVERRIDE SS4 OR EDIT = pop up? -->											
-													</dd>
+								</dd>
 													
 											</div>
 											</form>
@@ -263,14 +138,14 @@ function showSlides(n) {
 								<dd>
 								<div class="box_bit"> <input style="margin-top:10px; background:#4e8064;" class="bit_comm" id="userEmail" name="userEmail" type="text" ></div>
 								<p>
-                    				<a href="create.php" class="btn btn-success">Create</a>
+                    				<a href="ACCOUNT/create.php" class="btn btn-success">Create</a>
                 				</p>
 									<table id="ACCOUNT_TABLE">
 										<tr>
 											<th>ACCOUNT_ID</th>
 											<th>EMAIL</th>
 											<th>PASSWORD</th>
-											<th>Action</th>
+											<th>ACTION</th>
 										</tr>
 									  <!--PHP TABLE START-->
 									  <?php
@@ -283,11 +158,11 @@ function showSlides(n) {
 													echo '<td>'. $row['ACCOUNT_Email'] . '</td>';
 													echo '<td>'. $row['ACCOUNT_Password'] . '</td>';
 													echo '<td width=250>';
-													echo '<a class="btn" href="read.php?id='.$row['ACCOUNT_ID'].'">Read</a>';
+													echo '<a class="btn" href="ACCOUNT/read.php?id='.$row['ACCOUNT_ID'].'">Read</a>';
 													echo ' ';
-													echo '<a class="btn btn-success" href="update.php?id='.$row['ACCOUNT_ID'].'">Update</a>';
+													echo '<a class="btn btn-success" href="ACCOUNT/update.php?id='.$row['ACCOUNT_ID'].'">Update</a>';
 													echo ' ';
-													echo '<a class="btn btn-danger" href="delete.php?id='.$row['ACCOUNT_ID'].'">Delete</a>';
+													echo '<a class="btn btn-danger" href="ACCOUNT/delete.php?id='.$row['ACCOUNT_ID'].'">Delete</a>';
 													echo '</td>';
 													echo '</tr>';
 										}
@@ -301,46 +176,9 @@ function showSlides(n) {
 							</dl>
 							</div>
 							
-													</ul>
+						</ul>
 													
-													<!--NEED THESES?-->
-													<span class="btn_regist"style="margin-bottom:10px;cursor: pointer;" onclick="ACCOUNTmyCreateFunction()">Create row</span>
-													<span class="btn_regist"style="float:;margin-bottom:10px;cursor: pointer;" onclick="ACCOUNTmyDeleteFunction()">Delete row</span><!--INPUT NEEDED-->
-													<span class="btn_regist"style="float:;margin-bottom:10px;cursor: pointer;" onclick="ACCOUNTSaveFunction()">Save</span><!--FUNTION NEEDED-->
-													
-													<!--FUNTION ADD ROW PHP? 21600681-->
-													<script>
-													function ACCOUNTmyCreateFunction() {
-														var table = document.getElementById("ACCOUNT_TABLE");
-														var row = table.insertRow(-1);
-														var cell1 = row.insertCell(0);
-														var cell2 = row.insertCell(1);
-														var cell3 = row.insertCell(2);
-														var cell4 = row.insertCell(3);
-														
-														var element1 = document.createElement('input');
-														element1.type="text";
-														cell1.appendChild(element1);
-														var element2 = document.createElement('input');
-														element1.type="text";
-														cell2.appendChild(element2);
-														var element3 = document.createElement('input');
-														element1.type="text";
-														cell3.appendChild(element3);
-														var element4 = document.createElement('');
-														element1.type="text";
-														cell4.appendChild(element4);
-														<!--need create input text?-->
-														
-														
-													}
-
-													function ACCOUNTmyDeleteFunction() {
-													<!--GET INPUT for Row deletion?-->
-														document.getElementById("ACCOUNT_TABLE").deleteRow(-1);
-													}
-													</script>
-											</div>
+					</div>
 					</form>
 					<!--USERS END-->
 					
@@ -351,6 +189,49 @@ function showSlides(n) {
 					<a class="anchor" id="newsManagement"></a>
 					<h3 id="coupon" class="tit_group"><span class="img_black ico_coupon"></span>NEWS</h3>
 					<div class="group_detail group_coupon">
+
+								<dd>
+								<div class="box_bit"> <input style="margin-top:10px; background:#4e8064;" class="bit_comm" id="userEmail" name="userEmail" type="text" ></div>
+								<p>
+                    				<a href="NEWS/create.php" class="btn btn-success">Create</a>
+                				</p>
+									<table id="ADMIN_TABLE">
+										<tr>
+											<th>ARTICLE_ID</th>
+											<th>TITLE</th>
+											<th>CATEGORY</th>
+											<th>DATE</th>
+											<th>MESSAGE</th>
+											<th>ACTION</th>
+										</tr>
+									  <!--PHP TABLE START-->
+									  <?php
+										include 'database.php';
+										$pdo = Database::connect();
+										$sql = 'SELECT * FROM NEWS ORDER BY ARTICLE_ID DESC';
+										foreach ($pdo->query($sql) as $row) {
+													echo '<tr>';
+													echo '<td>'. $row['ARTICLE_ID'] . '</td>';
+													echo '<td>'. $row['ARTICLE_Title'] . '</td>';
+													echo '<td>'. $row['ARTICLE_Category'] . '</td>';
+													echo '<td>'. $row['ARTICLE_Date'] . '</td>';
+													echo '<td>'. $row['ARTICLE_Message'] . '</td>';
+													echo '<td width=250>';
+													echo '<a class="btn" href="NEWS/read.php?id='.$row['ARTICLE_ID'].'">Read</a>';
+													echo ' ';
+													echo '<a class="btn btn-success" href="NEWS/update.php?id='.$row['ARTICLE_ID'].'">Update</a>';
+													echo ' ';
+													echo '<a class="btn btn-danger" href="NEWS/delete.php?id='.$row['ARTICLE_ID'].'">Delete</a>';
+													echo '</td>';
+													echo '</tr>';
+										}
+										Database::disconnect();
+										?>
+									    
+									  
+									  </tr>
+									</table>
+								</dd>
 						<strong class="screen_out">My coupon</strong>
 						<ul class="list_item">
 															<div class="none_data">
@@ -403,68 +284,53 @@ function showSlides(n) {
 															<div class="none_data">
 									<span class="img_black"></span>
 									<dl class="list_regist">
-							<dd>
-							<table id="PRODUCT_TABLE">
-							  <tr>
-								<th>PRODUCT_ID</th>
-								<th>PRODUCT_TYPE</th>
-								<th>TITLE</th>
-								<th>PRICE</th>
-							  </tr>
-							  <tr>
-								
-								<td><input name="product_id" onfocus="if (this.value=='001') " type="text" value="001"></td>
-								<td><input name="title" onfocus="if (this.value=='GAME') " type="text" value="GAME"></td>
-								<td><input name="title" onfocus="if (this.value=='8-BIT GAME') " type="text" value="8-BIT GAME"></td>
-								<td><input name="price" onfocus="if (this.value=='9.99USD') " type="text" value="9.99USD"></td>
-							  </tr>
-							  
-							  
-							  </tr>
-							</table>
-
-</dd>
+									<dd>
+								<div class="box_bit"> <input style="margin-top:10px; background:#4e8064;" class="bit_comm" id="userEmail" name="userEmail" type="text" ></div>
+								<p>
+                    				<a href="PRODUCT/create.php" class="btn btn-success">Create</a>
+                				</p>
+									<table id="ADMIN_TABLE">
+										<tr>
+											<th>PRODUCT_ID</th>
+											<th>PRODUCT_Type</th>
+											<th>PRODUCT_Title</th>
+											<th>PRODUCT_Price</th>
+											<th>PRODUCT_Version</th>
+											<th>ACTION</th>
+										</tr>
+									  <!--PHP TABLE START-->
+									  <?php
+										include 'database.php';
+										$pdo = Database::connect();
+										$sql = 'SELECT * FROM PRODUCT ORDER BY ARTICLE_ID DESC';
+										foreach ($pdo->query($sql) as $row) {
+													echo '<tr>';
+													echo '<td>'. $row['PRODUCT_ID'] . '</td>';
+													echo '<td>'. $row['PRODUCT_Type'] . '</td>';
+													echo '<td>'. $row['PRODUCT_Title'] . '</td>';
+													echo '<td>'. $row['PRODUCT_Price'] . '</td>';
+													echo '<td>'. $row['PRODUCT_Version'] . '</td>';
+													echo '<td width=250>';
+													echo '<a class="btn" href="PRODUCT/read.php?id='.$row['ARTICLE_ID'].'">Read</a>';
+													echo ' ';
+													echo '<a class="btn btn-success" href="PRODUCT/update.php?id='.$row['ARTICLE_ID'].'">Update</a>';
+													echo ' ';
+													echo '<a class="btn btn-danger" href="PRODUCT/delete.php?id='.$row['ARTICLE_ID'].'">Delete</a>';
+													echo '</td>';
+													echo '</tr>';
+										}
+										Database::disconnect();
+										?>
+									    
+									  
+									  </tr>
+									</table>
+								</dd>
 
 							</dl>
 								</div>
 													</ul>
-													<!--NEED THESES?-->
-													<span class="btn_regist"style="margin-bottom:10px;cursor: pointer;" onclick="PRODUCTmyCreateFunction()">Create row</span>
-													<span class="btn_regist"style="float:;margin-bottom:10px;cursor: pointer;" onclick="PRODUCTmyDeleteFunction()">Delete row</span><!--INPUT NEEDED-->
-													<span class="btn_regist"style="float:;margin-bottom:10px;cursor: pointer;" onclick="PRODUCTSaveFunction()">Save</span><!--FUNTION NEEDED-->
-													
-													<!--FUNTION ADD ROW PHP? 21600681-->
-													<script>
-													function PRODUCTmyCreateFunction() {
-														var table = document.getElementById("PRODUCT_TABLE");
-														var row = table.insertRow(-1);
-														var cell1 = row.insertCell(0);
-														var cell2 = row.insertCell(1);
-														var cell3 = row.insertCell(2);
-														var cell4 = row.insertCell(3);
-														
-														var element1 = document.createElement('input');
-														element1.type="text";
-														cell1.appendChild(element1);
-														var element2 = document.createElement('input');
-														element1.type="text";
-														cell2.appendChild(element2);
-														var element3 = document.createElement('input');
-														element1.type="text";
-														cell3.appendChild(element3);
-														var element4 = document.createElement('input');
-														element1.type="text";
-														cell4.appendChild(element4);
-														<!--need create input text?-->
-														
-														
-													}
-
-													function PRODUCTmyDeleteFunction() {
-													<!--GET INPUT for Row deletion?-->
-														document.getElementById("PRODUCT_TABLE").deleteRow(-1);
-													}
-													</script>
+													s
 													
 											</div>
 											</form>
@@ -484,29 +350,56 @@ function showSlides(n) {
 						</ul>
 						<ul id="cashHistory" class="list_item" style="display:block;">
 															<div class="none_data">
-									<dd>
-									<table>
-									  <tr>
-										<th>ACCOUNT_EMAIL</th>
-										<th>PRODUCT_ID</th>
-										<th>PRODUCT_TYPE</th>
-										<th>TITLE</th>
-										<th>PRICE</th>
-										<th>CONFIRMATION</th>
-									  </tr>
-									  <tr>
-										<td>FAKE@EMAIL.COM</td>
-										<td>001</td>
-										<td>GAME</td>
-										<td>8-BIT GAME</td>
-										<td>9.99USD</td>
-										<td>YES</td>
-									  </tr>
-									  
+								<dd>
+								<div class="box_bit"> <input style="margin-top:10px; background:#4e8064;" class="bit_comm" id="userEmail" name="userEmail" type="text" ></div>
+								<p>
+                    				<a href="ORDERS/create.php" class="btn btn-success">Create</a>
+                				</p>
+									<table id="ADMIN_TABLE">
+										<tr>
+											<th>ORDERS_ID</th>
+											<th>ORDERS_CreiditCard</th>
+											<th>ORDERS_ExpiryDate</th>
+											<th>ORDERS_SecurityNumber</th>
+											<th>ORDERS_NameOnCard</th>
+											<th>ORDERS_DATE</th>
+											<th>ACCOUNT_ID</th>
+											<th>PRODUCT_ID</th>
+											<th>ACTION</th>
+										</tr>
+									  <!--PHP TABLE START-->
+									  <?php
+										include 'database.php';
+										$pdo = Database::connect();
+										$sql = 'SELECT * FROM ORDERS ORDER BY ARTICLE_ID DESC';
+										$sql = 'SELECT ACCOUNT_ID FROM ACCOUNT ORDER BY ACCOUNT_ID DESC';
+										$sql = 'SELECT PRODUCT_ID FROM PRODUCT ORDER BY PRODUCT_ID DESC';
+										foreach ($pdo->query($sql) as $row) {
+													echo '<tr>';
+													echo '<td>'. $row['ORDERS_ID'] . '</td>';
+													echo '<td>'. $row['ORDERS_CreiditCard'] . '</td>';
+													echo '<td>'. $row['ORDERS_ExpiryDate'] . '</td>';
+													echo '<td>'. $row['ORDERS_SecurityNumber'] . '</td>';
+													echo '<td>'. $row['ORDERS_NameOnCard'] . '</td>';
+													echo '<td>'. $row['ORDERS_DATE'] . '</td>';
+													echo '<td>'. $row['ACCOUNT_ID'] . '</td>';
+													echo '<td>'. $row['PRODUCT_ID'] . '</td>';
+													echo '<td width=250>';
+													echo '<a class="btn" href="ORDERS/read.php?id='.$row['ARTICLE_ID'].'">Read</a>';
+													echo ' ';
+													echo '<a class="btn btn-success" href="ORDERS/update.php?id='.$row['ARTICLE_ID'].'">Update</a>';
+													echo ' ';
+													echo '<a class="btn btn-danger" href="ORDERS/delete.php?id='.$row['ARTICLE_ID'].'">Delete</a>';
+													echo '</td>';
+													echo '</tr>';
+										}
+										Database::disconnect();
+										?>
+									    
 									  
 									  </tr>
 									</table>
-									</dd>
+								</dd>
 								</div>
 													</ul>
 						
