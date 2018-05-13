@@ -2,6 +2,7 @@
 
 	<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 	<?php
+	//21600681
 	include_once 'head.php';
 	?>
 
@@ -10,8 +11,7 @@
 	
 
 <?php
-include('session.php');
-include_once 'navBarLogin.php';
+include_once 'navBar.php';
 ?>	
 
 <hr class="hide">

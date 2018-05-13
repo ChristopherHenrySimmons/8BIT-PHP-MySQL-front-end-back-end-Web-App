@@ -1,11 +1,8 @@
 <?php
-
-$dbServername = "localhost";
-$dbUsername = "root";
-$dbPassword = "root";
-$dbName = "loginsystem";
-
-$conn = mysqli_connect($dbServername,$dbUsername, $dbPassword, $dbName);
-
-
-
+   $dbServername = "localhost";
+   $dbUsername = "root";
+   $dbPassword = "root";
+   $dbName = "8BITDB";
+   
+   //Fatal Error
+   $dbconn = new PDO("mysql:host=localhost;dbname=8BITDB", "root", "MySQL");

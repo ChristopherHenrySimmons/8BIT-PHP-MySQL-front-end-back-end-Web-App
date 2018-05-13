@@ -2,6 +2,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <?php
+//21600681
 	include_once 'head.php';
 	include("config.php");
    	session_start();
@@ -27,7 +28,7 @@
 			
 			header("location: account.php");
 		}else {
-			$error = "Your Login Name or Password is invalid";
+			$error = "Your Login Email or Password is invalid";
 		}
 	}
 	
@@ -35,7 +36,7 @@
 <body>
 
 <?php
-	include_once 'navBarLogout.php';
+	include_once 'navBar.php';
 ?>
 
 

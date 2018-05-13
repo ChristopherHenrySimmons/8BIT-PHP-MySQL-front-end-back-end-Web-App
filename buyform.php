@@ -33,7 +33,7 @@
 </head>
 
 <?php
-include_once 'navBarLogin.php';
+include_once 'navBar.php';
 ?>	
 <body>
 

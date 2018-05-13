@@ -6,7 +6,7 @@
 ?>
 <body>
 <?php
-	include_once 'navBarLogout.php';
+	include_once 'navBar.php';
 ?>
 
 <hr class="hide">

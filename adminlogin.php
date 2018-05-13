@@ -3,58 +3,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <?php
 	include_once 'head.php';
+	include_once 'navBar.php';
 ?>
 <body>
-<!-- Google Tag Manager -->
-
-<noscript><iframe src="//www.googletagmanager.com/ns.php?id=GTM-WF45LL" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager -->
-
-<!-----Navigation bar----->
-
-<div class="inner_head">
-				
-<ul class="gnb_comm">
-			
-			
-<!--Home Temp-->
-<li>
-<a href="index.php" class="link_gnb">HOME<span class="img_8bit ico_arr"></span></a>
-</li>
-<!------------->		
-<!---News dropdown menu---->
-<li>
-<a href="news.php" class="link_gnb">NEWS<span class="img_8bit ico_arr"></span></a>
-<!--Deleted-->
-</li>
-<!--------------------------->
-				
-				
-				
-				
-<!--DELETED-->
-				
-				
-<!--DELETED-->
-		
-<!----Login and register buttons----->
-<div id="login"style="float:right;margin-right:10px">
-<li><a href="login.php" class="link_gnb">LOGIN</a></li>
-<li><a href="register.php" class="link_gnb">REGISTER</a></li>
-<!--DELETED-->
-					
-					
-					
-<!----Buy now button----->
-<li><a href="buyform.php" class="">
-<span class="btn_regist" style="margin-top:12%;">BUY NOW</span></a></li>
-</div>
-</div>	
-
-</ul>
-</div>
-<!----End of navigation bar------>	
-
 
 
 <hr class="hide">
