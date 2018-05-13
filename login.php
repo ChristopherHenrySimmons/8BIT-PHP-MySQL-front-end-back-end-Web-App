@@ -11,8 +11,8 @@
 		
 		$myemail = mysqli_real_escape_string($db,$_POST['ACCOUNT_Email']);
 		$mypassword = mysqli_real_escape_string($db,$_POST['ACCOUNT_Password']); 
-		
-		$sql = "SELECT ACCOUNT_ID FROM ACCOUNT WHERE ACCOUNT_Email = '$myemail' and passcode = '$mypassword'";
+		//passcode after and
+		$sql = "SELECT ACCOUNT_ID FROM ACCOUNT WHERE ACCOUNT_Email = '$myemail' and ACCOUNT_Password = '$mypassword'";
 		$result = mysqli_query($db,$sql);
 		$row = mysqli_fetch_array($result,MYSQLI_ASSOC);
 		$active = $row['active'];
