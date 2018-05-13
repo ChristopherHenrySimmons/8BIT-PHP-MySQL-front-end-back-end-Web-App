@@ -10,6 +10,7 @@
 	
 
 <?php
+include('session.php');
 include_once 'navBarLogin.php';
 ?>	
 

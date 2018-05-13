@@ -21,7 +21,7 @@
 							<ul class="list_sub">
 								<li><a href="account.php" class="link_gnb_sub">INFO</a></li>
 								<li><a href="account.php" class="link_gnb_sub">HISTORY</a></li>
-								<li><a href="index.php" class="link_gnb_sub">LOGOUT</a></li>
+								<li><a href="logout.php" class="link_gnb_sub">LOGOUT</a></li>
 							</ul>
 						</div>
 					</li>

@@ -3,12 +3,36 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <?php
 	include_once 'head.php';
+	include("config.php");
+   	session_start();
+   
+	if($_SERVER["REQUEST_METHOD"] == "POST") {
+		// username and password sent from form 
+		
+		$myemail = mysqli_real_escape_string($db,$_POST['ACCOUNT_Email']);
+		$mypassword = mysqli_real_escape_string($db,$_POST['ACCOUNT_Password']); 
+		
+		$sql = "SELECT ACCOUNT_ID FROM ACCOUNT WHERE ACCOUNT_Email = '$myemail' and passcode = '$mypassword'";
+		$result = mysqli_query($db,$sql);
+		$row = mysqli_fetch_array($result,MYSQLI_ASSOC);
+		$active = $row['active'];
+		
+		$count = mysqli_num_rows($result);
+		
+		// If result matched $myemail and $mypassword, table row must be 1 row
+			
+		if($count == 1) {
+			session_register("myemail");
+			$_SESSION['login_user'] = $myemail;
+			
+			header("location: account.php");
+		}else {
+			$error = "Your Login Name or Password is invalid";
+		}
+	}
+	
 ?>
 <body>
-<!-- Google Tag Manager -->
-
-<noscript><iframe src="//www.googletagmanager.com/ns.php?id=GTM-WF45LL" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager -->
 
 <?php
 	include_once 'navBarLogout.php';
@@ -24,43 +48,13 @@
 			<?php include_once 'bgcover.php'; ?>
 			<div class="detail_black">
 				<h2 class="tit_detail" id="kakaoBody">MEMBER LOGIN</h2>
-				<!--account.php to login_mid.php-->
-				<form id="loginForm" name="form" action="account.php" method="post">
 				
-					<fieldset>
-						<legend class="screen_out">login form</legend>
-						<input id="accessToken" name="accessToken" value="" type="hidden">
-						<input id="socialId" name="socialId" value="" type="hidden">
-						<input id="socialType" name="socialType" value="" type="hidden">
-						<input id="returnUrl" name="returnUrl" value="%2F" type="hidden">
-						<div class="form_login">
-							<div class="group_set ">
-								
-								<div class="box_tf">
-									<label class="img_8bit ico_email" for="email">Email</label> 
-									<input class="tf_comm" id="ACCOUNT_Email" name="ACCOUNT_Email" placeholder="Email" type="text"> 
-									<span class="img_8bit ico_error"></span>
-								</div>
-								<span class="txt_error"></span>
-							</div>
-							<div class="group_set ">
-								
-								<div class="box_tf">
-									<label class="img_8bit ico_password" for="ACCOUNT_Password">Password</label> 
-									<input class="tf_comm" id="ACCOUNT_Password" name="ACCOUNT_Password" placeholder="Password" type="password">
-									<span class="img_8bit ico_error"></span>
-								</div>
-								<span class="txt_error"></span>
-							</div>
-							<div class="group_set ">
-								<span class="txt_error"></span>
-							</div>
-							<center style="margin-top:50px;">
-							<button  style=""class="" type="submit" name="submit"><span class="btn_regist">LOGIN</span></button>
-							</center>
-						</div>
-					</fieldset>
-				</form>
+				<form action = "" method = "post">
+                  <label>Email  :</label><input type = "text" name = "ACCOUNT_Email" class = "box"/><br /><br />
+                  <label>Password  :</label><input type = "password" name = "ACCOUNT_Password" class = "box" /><br/><br />
+                  <input type = "submit" value = " Submit "/><br />
+              	</form>
+
 				<ul class="rel_login">
 					
 					<center>
