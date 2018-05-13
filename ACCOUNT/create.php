@@ -1,7 +1,7 @@
 <?php
      
 	 //Updtae
-    require 'database.php';
+    require 'dbconn.php';
  
     if ( !empty($_POST)) {
         // keep track validation errors

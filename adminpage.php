@@ -24,7 +24,7 @@
 					<div class="group_detail group_account">
 
 								<dd>
-								<div class="box_bit"> <input style="margin-top:10px; background:#4e8064;" class="bit_comm" id="userEmail" name="userEmail" type="text" ></div>
+								
 								<p>
                     				<a href="ADMINS/create.php" class="btn btn-success">Create</a>
                 				</p>
@@ -37,10 +37,16 @@
 										</tr>
 									  <!--PHP TABLE START-->
 									  <?php
-										include 'database.php';
-										$pdo = Database::connect();
-										$sql = 'SELECT * FROM ADMINS ORDER BY ADMINS_ID DESC';
-										foreach ($pdo->query($sql) as $row) {
+										include 'dbconn.php';
+										$prodCat = "Cable";
+
+										$sql = "SELECT * FROM ADMINS ORDER BY ADMINS_ID ?";
+										$dbrs = $dbConn->prepare($sql);
+										$dbrs->execute(array($prodCat));
+
+										$numrow = $dbrs->rowCount();
+										
+										foreach ($dbrs as $dbrow) {
 													echo '<tr>';
 													echo '<td>'. $row['ADMINS_ID'] . '</td>';
 													echo '<td>'. $row['ADMINS_Email'] . '</td>';
@@ -54,7 +60,7 @@
 													echo '</td>';
 													echo '</tr>';
 										}
-										Database::disconnect();
+										
 										?>
 									    
 									  
@@ -67,7 +73,7 @@
 					<a class="anchor" id="screenshotmanagement"></a>
 					<h3 id="coupon" class="tit_group"><span class="img_black ico_coupon"></span>SCREENSHOT MANAGEMENT</h3>
 					<div class="group_detail group_coupon">
-						<strong class="screen_out">My coupon</strong>
+						
 						<ul class="list_item">
 							<div class="none_data">
 									<span class="img_black"></span>
@@ -80,24 +86,17 @@
 <div class="row">
   <div class="">
 	<?php
-		include 'database.php';
-		$pdo = Database::connect();
-		$sql = 'SELECT * FROM IMAGES ORDER BY IMAGES_ID DESC';
-			if(!$db) {
-				echo mysql_error();
-			}
+		include 'dbconn.php';
+		$prodCat = "Cable";
 
-			$q = "SELECT IMAGES_Img FROM IMAGES where IMAGES_ID=1";
-			$r = mysql_query ("$q",$conn);
-			if($r) {
-				while($row = mysql_fetch_array($r)) {
-					header ("Content-type: image/jpeg");       
-			echo $row ["IMAGES_Img"];
-				}
-			}else{
-				echo mysql_error();
-			}
+		$sql = "SELECT * FROM ADMINS ORDER BY ADMINS_ID ?";
+		$dbrs = $dbConn->prepare($sql);
+		$dbrs->execute(array($prodCat));
+
+		$numrow = $dbrs->rowCount();
+		
 		?>
+		
   </div>
 </div>
 </dd>
@@ -128,7 +127,7 @@
 					<h3 id="coupon" class="tit_group"><span class="img_black ico_coupon"></span>USER MANAGEMENT</h3>
 					
 					<div class="group_detail group_coupon">
-						<strong class="screen_out">My coupon</strong>
+						
 						
 						<ul class="">
 							<div class="">
@@ -136,7 +135,7 @@
 							<dl class="list_regist">
 								
 								<dd>
-								<div class="box_bit"> <input style="margin-top:10px; background:#4e8064;" class="bit_comm" id="userEmail" name="userEmail" type="text" ></div>
+								
 								<p>
                     				<a href="ACCOUNT/create.php" class="btn btn-success">Create</a>
                 				</p>
@@ -149,10 +148,16 @@
 										</tr>
 									  <!--PHP TABLE START-->
 									  <?php
-										include 'database.php';
-										$pdo = Database::connect();
-										$sql = 'SELECT * FROM ACCOUNT ORDER BY ACCOUNT_ID DESC';
-										foreach ($pdo->query($sql) as $row) {
+										include 'dbconn.php';
+										$prodCat = "Cable";
+
+										$sql = "SELECT * FROM ADMINS ORDER BY ADMINS_ID ?";
+										$dbrs = $dbConn->prepare($sql);
+										$dbrs->execute(array($prodCat));
+
+										$numrow = $dbrs->rowCount();
+										
+										foreach ($dbrs as $dbrow) {
 													echo '<tr>';
 													echo '<td>'. $row['ACCOUNT_ID'] . '</td>';
 													echo '<td>'. $row['ACCOUNT_Email'] . '</td>';
@@ -166,7 +171,7 @@
 													echo '</td>';
 													echo '</tr>';
 										}
-										Database::disconnect();
+										
 										?>
 									    
 									  
@@ -191,7 +196,7 @@
 					<div class="group_detail group_coupon">
 
 								<dd>
-								<div class="box_bit"> <input style="margin-top:10px; background:#4e8064;" class="bit_comm" id="userEmail" name="userEmail" type="text" ></div>
+								
 								<p>
                     				<a href="NEWS/create.php" class="btn btn-success">Create</a>
                 				</p>
@@ -206,10 +211,16 @@
 										</tr>
 									  <!--PHP TABLE START-->
 									  <?php
-										include 'database.php';
-										$pdo = Database::connect();
-										$sql = 'SELECT * FROM NEWS ORDER BY ARTICLE_ID DESC';
-										foreach ($pdo->query($sql) as $row) {
+										include 'dbconn.php';
+										$prodCat = "Cable";
+
+										$sql = "SELECT * FROM ADMINS ORDER BY ADMINS_ID ?";
+										$dbrs = $dbConn->prepare($sql);
+										$dbrs->execute(array($prodCat));
+
+										$numrow = $dbrs->rowCount();
+										
+										foreach ($dbrs as $dbrow) {
 													echo '<tr>';
 													echo '<td>'. $row['ARTICLE_ID'] . '</td>';
 													echo '<td>'. $row['ARTICLE_Title'] . '</td>';
@@ -225,14 +236,14 @@
 													echo '</td>';
 													echo '</tr>';
 										}
-										Database::disconnect();
+										
 										?>
 									    
 									  
 									  </tr>
 									</table>
 								</dd>
-						<strong class="screen_out">My coupon</strong>
+						
 						<ul class="list_item">
 															<div class="none_data">
 									<span class="img_black"></span>
@@ -279,13 +290,13 @@
 					<a class="anchor" id="productManagement"></a>
 					<h3 id="coupon" class="tit_group"><span class="img_black ico_coupon"></span>PRODUCT</h3>
 					<div class="group_detail group_coupon">
-						<strong class="screen_out">My coupon</strong>
+						
 						<ul class="list_item">
 															<div class="none_data">
 									<span class="img_black"></span>
 									<dl class="list_regist">
 									<dd>
-								<div class="box_bit"> <input style="margin-top:10px; background:#4e8064;" class="bit_comm" id="userEmail" name="userEmail" type="text" ></div>
+								
 								<p>
                     				<a href="PRODUCT/create.php" class="btn btn-success">Create</a>
                 				</p>
@@ -300,10 +311,16 @@
 										</tr>
 									  <!--PHP TABLE START-->
 									  <?php
-										include 'database.php';
-										$pdo = Database::connect();
-										$sql = 'SELECT * FROM PRODUCT ORDER BY ARTICLE_ID DESC';
-										foreach ($pdo->query($sql) as $row) {
+										include 'dbconn.php';
+										$prodCat = "Cable";
+
+										$sql = "SELECT * FROM ADMINS ORDER BY ADMINS_ID ?";
+										$dbrs = $dbConn->prepare($sql);
+										$dbrs->execute(array($prodCat));
+
+										$numrow = $dbrs->rowCount();
+										
+										foreach ($dbrs as $dbrow) {
 													echo '<tr>';
 													echo '<td>'. $row['PRODUCT_ID'] . '</td>';
 													echo '<td>'. $row['PRODUCT_Type'] . '</td>';
@@ -319,7 +336,7 @@
 													echo '</td>';
 													echo '</tr>';
 										}
-										Database::disconnect();
+										
 										?>
 									    
 									  
@@ -351,7 +368,7 @@
 						<ul id="cashHistory" class="list_item" style="display:block;">
 															<div class="none_data">
 								<dd>
-								<div class="box_bit"> <input style="margin-top:10px; background:#4e8064;" class="bit_comm" id="userEmail" name="userEmail" type="text" ></div>
+								
 								<p>
                     				<a href="ORDERS/create.php" class="btn btn-success">Create</a>
                 				</p>
@@ -369,12 +386,16 @@
 										</tr>
 									  <!--PHP TABLE START-->
 									  <?php
-										include 'database.php';
-										$pdo = Database::connect();
-										$sql = 'SELECT * FROM ORDERS ORDER BY ARTICLE_ID DESC';
-										$sql = 'SELECT ACCOUNT_ID FROM ACCOUNT ORDER BY ACCOUNT_ID DESC';
-										$sql = 'SELECT PRODUCT_ID FROM PRODUCT ORDER BY PRODUCT_ID DESC';
-										foreach ($pdo->query($sql) as $row) {
+										include 'dbconn.php';
+										$prodCat = "Cable";
+
+										$sql = "SELECT * FROM ADMINS ORDER BY ADMINS_ID ?";
+										$dbrs = $dbConn->prepare($sql);
+										$dbrs->execute(array($prodCat));
+
+										$numrow = $dbrs->rowCount();
+										
+										foreach ($dbrs as $dbrow) {
 													echo '<tr>';
 													echo '<td>'. $row['ORDERS_ID'] . '</td>';
 													echo '<td>'. $row['ORDERS_CreiditCard'] . '</td>';
@@ -393,7 +414,7 @@
 													echo '</td>';
 													echo '</tr>';
 										}
-										Database::disconnect();
+										
 										?>
 									    
 									  

@@ -1,5 +1,5 @@
 <?php
-    require 'database.php';
+    require 'dbconn.php';
     $ADMINS_ID = 0;
      
     if ( !empty($_GET['ADMINS_ID'])) {

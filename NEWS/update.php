@@ -1,5 +1,5 @@
 <?php
-    require 'database.php';
+    require 'dbconn.php';
  
     $ARTICLE_ID = null;
     if ( !empty($_GET['ARTICLE_ID'])) {

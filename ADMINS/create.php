@@ -1,7 +1,8 @@
 <?php
      
 	 //Updtae
-    require 'database.php';
+	 //RENAME 'dbconn.php'
+    require 'dbconn.php';
  
     if ( !empty($_POST)) {
         // keep track validation errors

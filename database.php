@@ -5,4 +5,5 @@ $dbUsername = "root";
 $dbPassword = "root";
 $dbName = "8BITDB";
 
-$conn = mysqli_connect($dbServername,$dbUsername, $dbPassword, $dbName);
+//Fatal Error
+$dbconn = new PDO("mysql:host=localhost;dbname=classlabs", "root", "MySQL");
