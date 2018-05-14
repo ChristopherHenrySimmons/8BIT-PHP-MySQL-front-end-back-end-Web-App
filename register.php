@@ -7,12 +7,7 @@ include_once 'head.php';
 ?>
 
 <body>
-
-
-
-<?php
-	include_once 'navBarLogout.php';
-?>	
+	
 
 <hr class="hide">
 	<div class="cont_login" id="kakaoContent">

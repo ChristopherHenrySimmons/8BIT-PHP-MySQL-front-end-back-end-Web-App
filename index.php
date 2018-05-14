@@ -4,9 +4,7 @@
 	
 	<?php
 	include_once 'head.php';
-
-	include_once 'navBarLogout.php';
-?>	
+	?>	
 <!--START: Body-->
 <body>
 	<!--START: Content-->

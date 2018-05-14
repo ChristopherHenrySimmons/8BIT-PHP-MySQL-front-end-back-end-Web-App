@@ -4,15 +4,19 @@
 	<?php
 	//21600681
 	include_once 'head.php';
+	
 	?>
+
+
+
+
+
 
 <body>
 	
 	
 
-<?php
-include_once 'navBar.php';
-?>	
+	
 
 <hr class="hide">
 	<div class="cont_account" id="kakaoContent">
@@ -27,7 +31,12 @@ include_once 'navBar.php';
 					<div class="group_detail group_account">
 						<dl class="list_regist">
 							<dt>EMAIL</dt>
-							<dd>DudEmail.protonmail.com</dd>
+							<dd>
+							<?php
+							echo $_SESSION['Email'];
+							?>
+							</dd>
+							
 						</dl>
 						<!--FUNTION NEEDED PHP JS SQL CHAGING PASSWORD ENTER PASSWORD-->
 						<dl id="password" class="list_regist list_password">
