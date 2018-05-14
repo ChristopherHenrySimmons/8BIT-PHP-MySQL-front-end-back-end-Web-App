@@ -2,7 +2,7 @@
 
 session_start();
 //adminnavbar?
-if(isset($_SESSION['login_user'])) {
+if(isset($_SESSION['Email'])) {
     include('navBarLogin.php');
 } else {
     include('navBarLogout.php');

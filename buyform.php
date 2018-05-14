@@ -34,7 +34,28 @@
 
 <?php
 include_once 'navBar.php';
-?>	
+try{
+	$con = new PDO ("mysql:host=localhost;dbname=8bitdb","root","root");
+		if(isset($_POST['submit'])){
+			$ORDERS_CreiditCard = $_POST['cardNum'];
+			$ORDERS_NameOnCard = $_POST['cardName'];
+			$ORDERS_ExpiryDate = $_POST['cardExp'];
+			$ORDERS_SecurityNumber = $_POST['cardSec'];
+	
+			$insert = $con->prepare("INSERT INTO ORDERS (ORDERS_CreiditCard, ORDERS_NameOnCard, ORDERS_ExpiryDate, ORDERS_SecurityNumber)
+			VALUES(:cardNum,:cardName,:cardExp,:cardSec) ");
+			$insert->bindParam(':cardNum',$ORDERS_CreiditCard);
+			$insert->bindParam(':cardName',$ORDERS_NameOnCard);
+			$insert->bindParam(':cardExp',$ORDERS_ExpiryDate);
+			$insert->bindParam(':cardSec',$ORDERS_SecurityNumber);
+			$insert->execute();
+		}
+	}
+
+catch(PDOException $e){
+	echo "error".$e->getMessage();
+}
+?>
 <body>
 
 
@@ -69,7 +90,7 @@ include_once 'navBar.php';
 								
 									<div class="group_set">
 										<div class="box_tf">
-											<input  class="tf_comm" id="fullName" name="fullName" type="text" placeholder="Full Name" required> <span class="img_black ico_error"></span>
+											<input  class="tf_comm" id="cardNum" name="cardNum" type="text" placeholder="Card Number" required> <span class="img_black ico_error"></span>
 										</div>
 										<span class="txt_error">Required</span>
 									</div>
@@ -93,13 +114,13 @@ include_once 'navBar.php';
 
 					
 				</div>
+
 				<div class="group_set" style="">
 							<dl class="list_regist">
-								<label class="lab_comm" ></label>
 								
 									<div class="group_set">
-										<div class="">
-										<div id="card-element"><!-- A Stripe Element will be inserted here. --></div> <span class="img_black ico_error"></span>
+										<div class="box_tf">
+											<input  class="tf_comm" id="cardExp" name="cardExp" type="text" placeholder="Expiration Date MM/YY" required> <span class="img_black ico_error"></span>
 										</div>
 										<span class="txt_error">Required</span>
 									</div>
@@ -108,12 +129,28 @@ include_once 'navBar.php';
 
 					
 				</div>
+
+				<div class="group_set" style="">
+							<dl class="list_regist">
+								
+									<div class="group_set">
+										<div class="box_tf">
+											<input  class="tf_comm" id="cardSec" name="cardSec" type="text" placeholder="Security Code" required> <span class="img_black ico_error"></span>
+										</div>
+										<span class="txt_error">Required</span>
+									</div>
+								
+							</dl>
+
+					
+				</div>
+				
 																				
 				</ul>
 											</div>
 						<div class="wrap_btn  group_billing">	
 							<button style="float:left;" onclick="goBack();">BACK</button>	
-							<button style="float:right;">Submit Payment</button>
+							<input style="float:right;" type="submit" name="submit" value="Subment Payment">
 							<!--GOTO ACCOUNT ADD TO PURCHASE HISTORY 21600681-->
 						</div>	
 										</div>
