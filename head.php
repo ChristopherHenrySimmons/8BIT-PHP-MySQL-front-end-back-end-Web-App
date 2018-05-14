@@ -28,3 +28,7 @@
 	<script type="text/javascript" async="" src="script/recaptcha__en.js"></script><script id="facebook-jssdk" src="script/sdk.js"></script><script async="" src="script/gtm.js"></script><script type="text/javascript" src="script/jquery-1.js"></script>
 
 </head>
+<?php
+include_once 'navBar.php';
+
+?>
