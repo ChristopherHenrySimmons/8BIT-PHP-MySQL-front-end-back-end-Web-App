@@ -4,12 +4,22 @@
 	<?php
 	//21600681
 	include_once 'head.php';
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 02d5ba4bc7286a68a16e58423de5d031fa9f2e33
 	if(empty($_SESSION['Email']))
 		{
 		header("location:login.php");
 		}
 
 
+<<<<<<< HEAD
+=======
+=======
+	
+>>>>>>> 23b63dc70c627bdff329ff847680c6fa019a16bb
+>>>>>>> 02d5ba4bc7286a68a16e58423de5d031fa9f2e33
 	?>
 
 
@@ -36,7 +46,19 @@
 					<div class="group_detail group_account">
 						<dl class="list_regist">
 							<dt>EMAIL</dt>
+<<<<<<< HEAD
 							<dd> <?php echo $_SESSION['Email'];	?> </dd>
+=======
+<<<<<<< HEAD
+							<dd> <?php echo $_SESSION['Email'];	?> </dd>
+=======
+							<dd>
+							<?php
+							echo $_SESSION['Email'];
+							?>
+							</dd>
+>>>>>>> 23b63dc70c627bdff329ff847680c6fa019a16bb
+>>>>>>> 02d5ba4bc7286a68a16e58423de5d031fa9f2e33
 							
 						</dl>
 						<!--FUNTION NEEDED PHP JS SQL CHAGING PASSWORD ENTER PASSWORD-->
