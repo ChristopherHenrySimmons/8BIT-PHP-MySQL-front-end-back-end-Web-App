@@ -1,30 +1,11 @@
-<!DOCTYPE html>
-
-	<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-	
 <?php
-include_once 'head.php';
-try{
-	$con = new PDO ("mysql:host=localhost;dbname=8bitdb","root","root");
-		if(isset($_POST['submit'])){
-			$ACCOUNT_Email = $_POST['Email'];
-			$ACCOUNT_Password = $_POST['Password'];
-		
-	
-			$insert = $con->prepare("INSERT INTO ACCOUNT (ACCOUNT_Email, ACCOUNT_Password)
-			VALUES(:Email,:Password) ");
-			$insert->bindParam(':Email',$ACCOUNT_Email);
-			$insert->bindParam(':Password',$ACCOUNT_Password);
-			$insert->execute();
-		}
-	}
+session_start();
 
-catch(PDOException $e){
-	echo "error".$e->getMessage();
-}
+include 'head.php';
+
+include "navBar.php";
+
 ?>
-
-<body>
 	
 
 <hr class="hide">
@@ -38,11 +19,9 @@ catch(PDOException $e){
 				<div class="detail_black">
 					<h2 class="tit_detail" id="kakaoBody">CREATE YOUR ACCOUNT</h2>
 					<p class="desc_login" style="color:#FFF">Join us on your next great happy adventure.</p>
-					
 					<center>
-					<form method="post">
-
-					<input type="text" name="Email" placeholder="Fake@Email.com"><br><br>
+					<form method="post" action="reg_verify.php">
+					<input type="text" name="Email" placeholder="ex@Email.com"><br><br>
 					<input type="password" name="Password" placeholder="**********"><br><br>
 					<br><br>
 					<input type="submit" name="submit" value="SIGN UP">
@@ -59,7 +38,7 @@ catch(PDOException $e){
 	<hr class="hide">
 	
 	
-<!--21600681-->
+
 <?php
 	include_once 'foot.php';
 ?>

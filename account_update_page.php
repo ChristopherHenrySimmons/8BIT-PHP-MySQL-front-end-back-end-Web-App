@@ -40,17 +40,23 @@ else
 						<dl class="list_regist">
 							<dt>EMAIL</dt>
 							
-							<form method="post" action="account_update_page.php">
-							<dd> <?php echo $_SESSION['Email'];	?> </dd>
-							<!--<dd><button href="account_update_page.php" class="btn_regist" id="changePassword"  type="button">CHANGE EMAIL</button></dd>-->
-							<dd><input type="submit" name="change_email" value="CHANGE EMAIL"></dd>
+							<form method="post" action="account.php">
+							<dd><input type="text" name="Email" placeholder=<?php echo $_SESSION['Email'];	?>><br><br></dd>
+							<dd><input type="submit" name="save" value="SAVE"></dd>
+							</form>
+							<form method="post" action="account.php">
+							<dd><input type="submit" name="cancel" value="CANCEL"></dd>
+							</form>
 							
 						</dl>
 						<!--FUNTION NEEDED PHP JS SQL CHAGING PASSWORD ENTER PASSWORD-->
 						<dl id="password" class="list_regist list_password">
 							<dt>PASSWORD</dt>
-							<form method="post" action="account_update_page.php">
-							<dd><input type="submit" name="change_pass" value="CHANGE PASSWORD"></dd>
+							<form method="post" action="account_update.php">
+							<dd><input type="text" name="Email" placeholder="new password"><br><br></dd>
+							<dd><input type="submit" name="save" value="SAVE"></dd>
+							<form method="post" action="account.php">
+							<dd><input type="submit" name="cancel" value="CANCEL"></dd>
 						</dl>
 						<dl id="password_change" class="list_regist lab_comm" style="display:none;">
 							<dt>PASSWORD</dt>
