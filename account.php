@@ -1,18 +1,30 @@
-<!DOCTYPE html>
+<?php
 
-	<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-	<?php
-	//21600681
-	include_once 'head.php';
+session_start();
+
+include 'head.php';
+
+include "navBar.php";
+
+
+if (isset($_SESSION['LoggedIn']))
+{
+	if($_SESSION['LoggedIn'] == false)
+	{
+		header ('location: login.php');
+	}
+}
+else
+{
+	header ('location: login.php');
+}
+
+
 	?>
 
-<body>
-	
-	
 
-<?php
-include_once 'navBar.php';
-?>	
+
+<body>
 
 <hr class="hide">
 	<div class="cont_account" id="kakaoContent">
@@ -27,12 +39,18 @@ include_once 'navBar.php';
 					<div class="group_detail group_account">
 						<dl class="list_regist">
 							<dt>EMAIL</dt>
-							<dd>DudEmail.protonmail.com</dd>
+							
+							<form method="post" action="account_update_page.php">
+							<dd> <?php echo $_SESSION['Email'];	?> </dd>
+							<!--<dd><button href="account_update_page.php" class="btn_regist" id="changePassword"  type="button">CHANGE EMAIL</button></dd>-->
+							<dd><input type="submit" name="change_email" value="CHANGE EMAIL"></dd>
+							
 						</dl>
 						<!--FUNTION NEEDED PHP JS SQL CHAGING PASSWORD ENTER PASSWORD-->
 						<dl id="password" class="list_regist list_password">
 							<dt>PASSWORD</dt>
-							<dd><button class="btn_regist" id="changePassword" type="button">CHANGE PASSWORD</button></dd>
+							<form method="post" action="account_update_page.php">
+							<dd><input type="submit" name="change_pass" value="CHANGE PASSWORD"></dd>
 						</dl>
 						<dl id="password_change" class="list_regist lab_comm" style="display:none;">
 							<dt>PASSWORD</dt>
@@ -85,7 +103,7 @@ include_once 'navBar.php';
 					<dl class="list_regist">
 						
 						<dt>UPLOAD</dt>
-						<form onmouseover="" style="cursor: pointer;" action="db_uploadphoto.php" method="post" enctype="multipart/form-data">
+						<form onmouseover="" style="cursor: pointer;" action="uploadfile.php" method="post" enctype="multipart/form-data">
 						<input type="file" name="FileToUpload" style="background-color:#4e8064;cursor: pointer;">
 						<input type="submit" value="Upload Image" name="submit" style="background-color:#4e8064;cursor: pointer;">
 						</form>

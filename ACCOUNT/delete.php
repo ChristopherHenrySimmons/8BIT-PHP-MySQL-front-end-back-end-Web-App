@@ -1,5 +1,5 @@
 <?php
-    require 'dbconn.php';
+    include 'dbconn.php';
     $ACCOUNT_ID = 0;
      
     if ( !empty($_GET['ACCOUNT_ID'])) {
@@ -11,12 +11,17 @@
         $ACCOUNT_ID = $_POST['ACCOUNT_ID'];
          
         // delete data
-        $pdo = Database::connect();
+        include 'dbconn.php';
+		$sql = "SELECT * FROM ADMIN ORDER BY ADMIN_ID";
+		$dbrs = $dbConn->prepare($sql);
+		$dbrs->execute();
+
+		$numrow = $dbrs->rowCount(); 
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $sql = "DELETE FROM customers  WHERE ACCOUNT_ID = ?";
         $q = $pdo->prepare($sql);
         $q->execute(array($ACCOUNT_ID));
-        Database::disconnect();
+        
         header("Location: index.php");
          
     }

@@ -21,7 +21,7 @@
 						<div class="gnb_sub">
 							<ul class="list_sub">
 								
-								<li><a href="index.php" class="link_gnb_sub">LOGOUT</a></li>
+								<li><a href="logout.php" class="link_gnb_sub">LOGOUT</a></li>
 							</ul>
 						</div>
 					</li>

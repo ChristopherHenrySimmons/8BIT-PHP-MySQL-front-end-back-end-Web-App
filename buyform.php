@@ -1,40 +1,36 @@
-<!DOCTYPE html>
-
-	<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-	<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	
-	<!--Web Site title--->
-	<title> 8-BIT</title>
-	<title><?php print $ptitle ?></title>
-	<link rel="icon" href="img/ZombieIcon.png"> <!--browser icon-->
-	<!------------------>
-	
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=1920, user-scalable=yes, maximum-scale=1">
-	
-	<!--Get Access to css-->
-	<!--link href="Black%20Desert%20Online%20Register_files/css.css" rel="stylesheet" type="text/css"-->
-	<!---Icons and fonts references---->
-	<link href="https://fonts.googleapis.com/css?family=Marcellus" rel="stylesheet" type="text/css">
-	<link rel="shortcut icon" href="img/ZombieIcon.png" type="image/x-icon">
-	<link rel="icon" href="img/ZombieIcon.png" type="image/x-icon">
+<head>
 	<link rel="stylesheet" type="text/css" href="css/common2.css">
-	<link rel="stylesheet" type="text/css" href="css/gallerycss.css" />
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="payment_method.css">
-	
-	<style>
-		@media (max-width: 1800px) {
-							.gnb_comm .link_gnb{padding:34px 21px !important}
-					}
-	</style>
-	
 </head>
 
 <?php
-include_once 'navBar.php';
-?>	
+session_start();
+
+include 'head.php';
+
+include "navBar.php";
+
+try{
+	$con = new PDO ("mysql:host=localhost;dbname=8bitdb","root","root");
+		if(isset($_POST['submit'])){
+			$ORDERS_CreiditCard = $_POST['cardNum'];
+			$ORDERS_NameOnCard = $_POST['cardName'];
+			$ORDERS_ExpiryDate = $_POST['cardExp'];
+			$ORDERS_SecurityNumber = $_POST['cardSec'];
+	
+			$insert = $con->prepare("INSERT INTO ORDERS (ORDERS_CreiditCard, ORDERS_NameOnCard, ORDERS_ExpiryDate, ORDERS_SecurityNumber)
+			VALUES(:cardNum,:cardName,:cardExp,:cardSec) ");
+			$insert->bindParam(':cardNum',$ORDERS_CreiditCard);
+			$insert->bindParam(':cardName',$ORDERS_NameOnCard);
+			$insert->bindParam(':cardExp',$ORDERS_ExpiryDate);
+			$insert->bindParam(':cardSec',$ORDERS_SecurityNumber);
+			$insert->execute();
+		}
+	}
+
+catch(PDOException $e){
+	echo "error".$e->getMessage();
+}
+?>
 <body>
 
 
@@ -57,6 +53,9 @@ include_once 'navBar.php';
 				
 				<!--CONTENT BOXE-->
 				<fieldset>
+		<?php
+		if ($isLoggedIn) 
+		{ ?>
 				<legend class="screen_out">Payment form</legend>
 				<h3 class="tit_group">PAYMENT METHOD</h3>
 			<div class="group_detail group_billing">
@@ -69,7 +68,7 @@ include_once 'navBar.php';
 								
 									<div class="group_set">
 										<div class="box_tf">
-											<input  class="tf_comm" id="fullName" name="fullName" type="text" placeholder="Full Name" required> <span class="img_black ico_error"></span>
+											<input  class="tf_comm" id="cardNum" name="cardNum" type="text" placeholder="Card Number" required> <span class="img_black ico_error"></span>
 										</div>
 										<span class="txt_error">Required</span>
 									</div>
@@ -93,13 +92,13 @@ include_once 'navBar.php';
 
 					
 				</div>
+
 				<div class="group_set" style="">
 							<dl class="list_regist">
-								<label class="lab_comm" ></label>
 								
 									<div class="group_set">
-										<div class="">
-										<div id="card-element"><!-- A Stripe Element will be inserted here. --></div> <span class="img_black ico_error"></span>
+										<div class="box_tf">
+											<input  class="tf_comm" id="cardExp" name="cardExp" type="text" placeholder="Expiration Date MM/YY" required> <span class="img_black ico_error"></span>
 										</div>
 										<span class="txt_error">Required</span>
 									</div>
@@ -108,12 +107,28 @@ include_once 'navBar.php';
 
 					
 				</div>
+
+				<div class="group_set" style="">
+							<dl class="list_regist">
+								
+									<div class="group_set">
+										<div class="box_tf">
+											<input  class="tf_comm" id="cardSec" name="cardSec" type="text" placeholder="Security Code" required> <span class="img_black ico_error"></span>
+										</div>
+										<span class="txt_error">Required</span>
+									</div>
+								
+							</dl>
+
+					
+				</div>
+				
 																				
 				</ul>
 											</div>
 						<div class="wrap_btn  group_billing">	
 							<button style="float:left;" onclick="goBack();">BACK</button>	
-							<button style="float:right;">Submit Payment</button>
+							<input style="float:right;" type="submit" name="submit" value="Submit Payment">
 							<!--GOTO ACCOUNT ADD TO PURCHASE HISTORY 21600681-->
 						</div>	
 										</div>
@@ -124,7 +139,15 @@ include_once 'navBar.php';
 						</div>
 					</div>
 						
-						
+		<?php
+		}
+		else
+		{ ?>
+			
+			<p style="color:black">If you would like to purchase our game first you have to make an account please.</p>
+			<li><a href="login.php" class="link_gnb_sub">"Click here"</a></li>
+		<?php 
+		} ?>
 					</fieldset>
 				</form>
 			

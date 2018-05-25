@@ -1,5 +1,5 @@
 <?php
-    require 'database.php';
+    $con = new PDO ("mysql:host=localhost;dbname=8bitdb","root","root");
  
     $id = null;
     if ( !empty($_GET['id'])) {

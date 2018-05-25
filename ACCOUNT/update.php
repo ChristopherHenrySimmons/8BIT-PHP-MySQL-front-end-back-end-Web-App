@@ -1,5 +1,5 @@
 <?php
-    require 'dbconn.php';
+    include 'dbconn.php';
  
     $id = null;
     if ( !empty($_GET['id'])) {

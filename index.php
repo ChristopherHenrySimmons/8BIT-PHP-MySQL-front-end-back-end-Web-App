@@ -1,13 +1,14 @@
 <html>
 
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-	
-	<?php
-	include_once 'head.php';
+<?php
+session_start();
 
-	include_once 'navBarLogout.php';
-?>	
-<!--START: Body-->
+include 'head.php';
+
+include "navBar.php";
+	
+
+?>
 <body>
 	<!--START: Content-->
 	<hr class="hide">
@@ -43,10 +44,10 @@
 					<h3 class="tit_article">MEMBER SCREENSHOTS</h3>
 					<center>
 						<div class="w3-content w3-display-container">
-						  <img class="mySlides" src="img/screenshot001.png" style="height:740px;">
-						  <img class="mySlides" src="img/screenshot002.png" style="height:740px;">
-						  <img class="mySlides" src="img/screenshot003.png" style="height:740px;">
-						  <img class="mySlides" src="img/screenshot004.png" style="height:740px;">
+						  <img class="mySlides" src="uploads/screenshot001.png" style="height:740px;">
+						  <img class="mySlides" src="uploads/screenshot002.png" style="height:740px;">
+						  <img class="mySlides" src="uploads/screenshot003.png" style="height:740px;">
+						  <img class="mySlides" src="uploads/screenshot004.png" style="height:740px;">
 
 						 
 						</div>

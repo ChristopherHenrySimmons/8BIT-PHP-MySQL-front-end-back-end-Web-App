@@ -1,10 +1,24 @@
-<!DOCTYPE html>
+<?php
+session_start();
+
+include 'head.php';
+
+include "navBar.php";
 	
-	<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-	<?php
-	include_once 'head.php';
-	include_once 'navBarLoginAdmin.php';
-	?>
+if (isset($_SESSION['LoggedInA']))
+{
+	if($_SESSION['LoggedInA'] == false)
+	{
+		header ('location: adminlogin.php');
+	}
+}
+else
+{
+	header ('location: adminlogin.php');
+}
+
+?>
+	
 
 <body>
 	
@@ -23,40 +37,45 @@
 					<h3 class="tit_group"><span class="img_black ico_account"></span>ADMIN INFO</h3>
 					<div class="group_detail group_account">
 
-								<dd>
+					<dd>
 								
 								<p>
-                    				<a href="ADMINS/create.php" class="btn btn-success">Create</a>
+                    				<a  class="btn_regist"  href="ADMIN/create.php" class="btn_regist">Create</a>
                 				</p>
-									<table id="ADMIN_TABLE">
+									<table style="color:#111;" style="color:#111;" id="ADMIN_TABLE">
 										<tr>
-											<th>ADMINS_ID</th>
+											<th>ADMIN_ID</th>
 											<th>EMAIL</th>
 											<th>PASSWORD</th>
 											<th>ACTION</th>
 										</tr>
 									  <!--PHP TABLE START-->
+									  <!--ERROR Doesn't read? or execute?-->
 									  <?php
-										include 'dbconn.php';
-										$prodCat = "Cable";
-
-										$sql = "SELECT * FROM ADMINS ORDER BY ADMINS_ID ?";
+									  
+										$dbConn = new PDO("mysql:host=localhost;dbname=8BITDB", "root", "root");
+										
+										
+										$sql = "SELECT * FROM ADMIN ORDER BY ADMIN_ID";
 										$dbrs = $dbConn->prepare($sql);
-										$dbrs->execute(array($prodCat));
+										$dbrs->execute();
 
-										$numrow = $dbrs->rowCount();
+										$numrow = $dbrs->rowCount(); 
+										echo "<div style='color:#111;'> $numrow row(s) retrieved</div>" . "\n<br>";
+										
+										
 										
 										foreach ($dbrs as $dbrow) {
 													echo '<tr>';
-													echo '<td>'. $row['ADMINS_ID'] . '</td>';
-													echo '<td>'. $row['ADMINS_Email'] . '</td>';
-													echo '<td>'. $row['ADMINS_Password'] . '</td>';
+													echo '<td>'. $dbrow['ADMIN_ID'] . '</td>';
+													echo '<td>'. $dbrow['ADMIN_Email'] . '</td>';
+													echo '<td>'. $dbrow['ADMIN_Password'] . '</td>';
 													echo '<td width=250>';
-													echo '<a class="btn" href="ADMINS/read.php?id='.$row['ADMINS_ID'].'">Read</a>';
+													echo '<a  class="btn_regist"  href="ADMIN/read.php?id='.$dbrow['ADMIN_ID'].'">Read</a>';
 													echo ' ';
-													echo '<a class="btn btn-success" href="ADMINS/update.php?id='.$row['ADMINS_ID'].'">Update</a>';
+													echo '<a  class="btn_regist"  href="ADMIN/update.php?id='.$dbrow['ADMIN_ID'].'">Update</a>';
 													echo ' ';
-													echo '<a class="btn btn-danger" href="ADMINS/delete.php?id='.$row['ADMINS_ID'].'">Delete</a>';
+													echo '<a  class="btn_regist"  href="ADMIN/delete.php?id='.$dbrow['ADMIN_ID'].'">Delete</a>';
 													echo '</td>';
 													echo '</tr>';
 										}
@@ -69,8 +88,8 @@
 								</dd>					
 					</div>
 					<!--SCREENSHOT MANAGEMENT-->
-					<form id="screenshotManagement" name="userManagement" method="POST" action="userManagement.php" autocomplete="on">
-					<a class="anchor" id="screenshotmanagement"></a>
+					<form id="screenshotManagement" name="" method="POST" action=".php" >
+					<a  class="anchor" id="screenshotmanagement"></a>
 					<h3 id="coupon" class="tit_group"><span class="img_black ico_coupon"></span>SCREENSHOT MANAGEMENT</h3>
 					<div class="group_detail group_coupon">
 						
@@ -78,28 +97,46 @@
 							<div class="none_data">
 									<span class="img_black"></span>
 							<dl class="list_regist">
-							<!--CLEAN UP LINE 154 to 176-->
-							<!--IMAGE-->
-							<!-- Images used to open the lightbox -->
+							
 							<dd>
+								<p>
+                    				<a  class="btn_regist"  href="IMAGES/create.php" class="btn_regist">Create</a>
+								</p>
+								
+								
+								<div class="row">
+								  <div class="">
+									<?php
+										include 'dbconn.php';
+										$sql = "SELECT * FROM IMAGES ORDER BY IMAGES_ID";
+										$dbrs = $dbConn->prepare($sql);
+										$dbrs->execute();
 
-<div class="row">
-  <div class="">
-	<?php
-		include 'dbconn.php';
-		$prodCat = "Cable";
-
-		$sql = "SELECT * FROM ADMINS ORDER BY ADMINS_ID ?";
-		$dbrs = $dbConn->prepare($sql);
-		$dbrs->execute(array($prodCat));
-
-		$numrow = $dbrs->rowCount();
-		
-		?>
-		
-  </div>
-</div>
-</dd>
+										$numrow = $dbrs->rowCount();  
+										echo "<div style='color:#111;'> $numrow row(s) retrieved</div>" . "\n<br>";
+										foreach ($dbrs as $dbrow){
+											
+											echo '<tr>';
+													echo '<td>'. $dbrow['IMAGES_ID'] . '</td>';
+													echo '<td>'. $dbrow['IMAGES_Caption'] . '</td>';
+													echo '<td>'. $dbrow['IMAGES_Img'] . '</td>';
+													echo '<td width=250>';
+													echo '<a  class="btn_regist" href="IMAGES/read.php?id='.$dbrow['ACCOUNT_ID'].'">Read</a>';
+													echo ' ';
+													echo '<a  class="btn_regist" href="IMAGES/update.php?id='.$dbrow['ACCOUNT_ID'].'">Update</a>';
+													echo ' ';
+													echo '<a  class="btn_regist" href="IMAGES/delete.php?id='.$dbrow['ACCOUNT_ID'].'">Delete</a>';
+													echo '</td>';
+													echo '</tr>';
+											
+											
+										}
+										
+										?>
+										
+								  </div>
+								</div>
+					</dd>
 
 <!--END IMAGE-->
 							
@@ -109,22 +146,16 @@
 							</div>
 							
 													</ul>
-													<dd style="margin-bottom:10px;cursor: pointer;">
-													<form action="db_uploadphoto.php" method="post" enctype="multipart/form-data">
-													<input type="file" name="FileToUpload" style="background-color:#4e8064;cursor: pointer;">
-													<input type="submit" value="Upload Image" name="submit" style="background-color:#4e8064;cursor: pointer;">
-													</form>
-													<!--EDIT PHP OVERRIDE SS4 OR EDIT = pop up? -->											
-								</dd>
+													
 													
 											</div>
 											</form>
 					<!--END SCREENSHOT MANAGEMENT-->
-					<!--USERS-->
+					<!--ACCOUNTS-->
 					<br>
-					<form id="userManagement" name="userManagement" method="POST" action="userManagement.php" autocomplete="on">
+					<form id="accountManagement" name="accountManagement" method="POST" action="accountManagement.php">
 					
-					<h3 id="coupon" class="tit_group"><span class="img_black ico_coupon"></span>USER MANAGEMENT</h3>
+					<h3 id="coupon" class="tit_group"><span class="img_black ico_coupon"></span>ACCOUNT MANAGEMENT</h3>
 					
 					<div class="group_detail group_coupon">
 						
@@ -137,9 +168,9 @@
 								<dd>
 								
 								<p>
-                    				<a href="ACCOUNT/create.php" class="btn btn-success">Create</a>
+                    				<a  href="ACCOUNT/create.php" class="btn_regist">Create</a>
                 				</p>
-									<table id="ACCOUNT_TABLE">
+									<table style="color:#111;" id="ACCOUNT_TABLE">
 										<tr>
 											<th>ACCOUNT_ID</th>
 											<th>EMAIL</th>
@@ -148,26 +179,25 @@
 										</tr>
 									  <!--PHP TABLE START-->
 									  <?php
-										include 'dbconn.php';
-										$prodCat = "Cable";
-
-										$sql = "SELECT * FROM ADMINS ORDER BY ADMINS_ID ?";
+										$dbConn = new PDO("mysql:host=localhost;dbname=8BITDB", "root", "root");
+										$sql = "SELECT * FROM ACCOUNT ORDER BY ACCOUNT_ID";
 										$dbrs = $dbConn->prepare($sql);
-										$dbrs->execute(array($prodCat));
+										$dbrs->execute();
 
-										$numrow = $dbrs->rowCount();
+										$numrow = $dbrs->rowCount(); 
+										echo "<div style='color:#111;'> $numrow row(s) retrieved</div>" . "\n<br>";
 										
 										foreach ($dbrs as $dbrow) {
 													echo '<tr>';
-													echo '<td>'. $row['ACCOUNT_ID'] . '</td>';
-													echo '<td>'. $row['ACCOUNT_Email'] . '</td>';
-													echo '<td>'. $row['ACCOUNT_Password'] . '</td>';
+													echo '<td>'. $dbrow['ACCOUNT_ID'] . '</td>';
+													echo '<td>'. $dbrow['ACCOUNT_Email'] . '</td>';
+													echo '<td>'. $dbrow['ACCOUNT_Password'] . '</td>';
 													echo '<td width=250>';
-													echo '<a class="btn" href="ACCOUNT/read.php?id='.$row['ACCOUNT_ID'].'">Read</a>';
+													echo '<a  class="btn_regist" href="ACCOUNT/read.php?id='.$dbrow['ACCOUNT_ID'].'">Read</a>';
 													echo ' ';
-													echo '<a class="btn btn-success" href="ACCOUNT/update.php?id='.$row['ACCOUNT_ID'].'">Update</a>';
+													echo '<a  class="btn_regist" href="ACCOUNT/update.php?id='.$dbrow['ACCOUNT_ID'].'">Update</a>';
 													echo ' ';
-													echo '<a class="btn btn-danger" href="ACCOUNT/delete.php?id='.$row['ACCOUNT_ID'].'">Delete</a>';
+													echo '<a  class="btn_regist" href="ACCOUNT/delete.php?id='.$dbrow['ACCOUNT_ID'].'">Delete</a>';
 													echo '</td>';
 													echo '</tr>';
 										}
@@ -185,22 +215,22 @@
 													
 					</div>
 					</form>
-					<!--USERS END-->
+					<!--ACCOUNTS END-->
 					
 
 					<!--NEWS-->
 					<br>
-					<form id="newsManagement" name="newsManagement" method="POST" action="newsManagement.php" autocomplete="on">
-					<a class="anchor" id="newsManagement"></a>
+					<form id="newsManagement" name="newsManagement" method="POST" action="newsManagement.php" >
+					<a  class="anchor" id="newsManagement"></a>
 					<h3 id="coupon" class="tit_group"><span class="img_black ico_coupon"></span>NEWS</h3>
 					<div class="group_detail group_coupon">
-
+							<dl class="list_regist">
 								<dd>
 								
 								<p>
-                    				<a href="NEWS/create.php" class="btn btn-success">Create</a>
+                    				<a  href="NEWS/create.php" class="btn_regist">Create</a>
                 				</p>
-									<table id="ADMIN_TABLE">
+									<table style="color:#111;" id="NEWS_TABLE">
 										<tr>
 											<th>ARTICLE_ID</th>
 											<th>TITLE</th>
@@ -211,28 +241,27 @@
 										</tr>
 									  <!--PHP TABLE START-->
 									  <?php
-										include 'dbconn.php';
-										$prodCat = "Cable";
-
-										$sql = "SELECT * FROM ADMINS ORDER BY ADMINS_ID ?";
+										$dbConn = new PDO("mysql:host=localhost;dbname=8BITDB", "root", "root");
+										$sql = "SELECT * FROM NEWS ORDER BY ARTICLE_ID";
 										$dbrs = $dbConn->prepare($sql);
-										$dbrs->execute(array($prodCat));
+										$dbrs->execute();
 
-										$numrow = $dbrs->rowCount();
+										$numrow = $dbrs->rowCount();  
+										echo "<div style='color:#111;'> $numrow row(s) retrieved</div>" . "\n<br>";
 										
 										foreach ($dbrs as $dbrow) {
 													echo '<tr>';
-													echo '<td>'. $row['ARTICLE_ID'] . '</td>';
-													echo '<td>'. $row['ARTICLE_Title'] . '</td>';
-													echo '<td>'. $row['ARTICLE_Category'] . '</td>';
-													echo '<td>'. $row['ARTICLE_Date'] . '</td>';
-													echo '<td>'. $row['ARTICLE_Message'] . '</td>';
+													echo '<td>'. $dbrow['ARTICLE_ID'] . '</td>';
+													echo '<td>'. $dbrow['ARTICLE_Title'] . '</td>';
+													echo '<td>'. $dbrow['ARTICLE_Category'] . '</td>';
+													echo '<td>'. $dbrow['ARTICLE_Date'] . '</td>';
+													echo '<td>'. $dbrow['ARTICLE_Message'] . '</td>';
 													echo '<td width=250>';
-													echo '<a class="btn" href="NEWS/read.php?id='.$row['ARTICLE_ID'].'">Read</a>';
+													echo '<a  class="btn_regist" href="NEWS/read.php?id='.$dbrow['ARTICLE_ID'].'">Read</a>';
 													echo ' ';
-													echo '<a class="btn btn-success" href="NEWS/update.php?id='.$row['ARTICLE_ID'].'">Update</a>';
+													echo '<a  class="btn_regist" href="NEWS/update.php?id='.$dbrow['ARTICLE_ID'].'">Update</a>';
 													echo ' ';
-													echo '<a class="btn btn-danger" href="NEWS/delete.php?id='.$row['ARTICLE_ID'].'">Delete</a>';
+													echo '<a  class="btn_regist" href="NEWS/delete.php?id='.$dbrow['ARTICLE_ID'].'">Delete</a>';
 													echo '</td>';
 													echo '</tr>';
 										}
@@ -243,64 +272,27 @@
 									  </tr>
 									</table>
 								</dd>
-						
-						<ul class="list_item">
-															<div class="none_data">
-									<span class="img_black"></span>
-									<dl class="list_regist">
-									
-							<dt>TITLE</dt>
-							<dd><input name="newsTitle" onfocus="if (this.value=='TITLE HERE') this.value = ''" type="text" value="TITLE HERE"></dd>
-							
 							</dl>
-							<dl class="list_regist">
-							<dt>MESSAGE</dt>
-							<dd><input style="height:;" name="newsMessage" onfocus="if (this.value=='MESSAGE HERE') this.value = ''" type="text" value="MESSAGE HERE"></dd>
-							
-							</dl>
-							<dl>
-							<select style="float:left; ">
-								  <option value="patchNotes">PATCH NOTES</option>
-								  <option value="maintenance">MAINTENANCE</option>
-								  <option value="events">EVENTS</option>
-								  <option value="announcements">ANNOUNCEMENTS</option>
-								</select>
-								
-													<dd style="margin-bottom:10px;cursor: pointer;">
-													<form action="db_uploadphoto.php" method="post" enctype="multipart/form-data">
-													<input type="file" name="FileToUpload" style="background-color:#4e8064;cursor: pointer;">
-													<input type="submit" value="Upload Image" name="submit" style="background-color:#4e8064;cursor: pointer;">
-													</form>
-													<!--EDIT PHP OVERRIDE SS4 OR EDIT = pop up? -->											
-													</dd>
-							</dl>
-								</div>
-								
-													</ul>
-													
-								
-													<span onmouseover="" style="cursor: pointer;margin-bottom:10px;" class="btn_regist">POST</span>
-													<a href="news.php" target="_blank"><span class="btn_regist"style="margin-bottom:10px; ">PREVEIW</span></a>
-											</div>
-											</form>
+						</div>
+					</form>
 					<!--END NEWS-->
 					<!--PRODUCT-->
 					<br>
-					<form id="productManagement" name="productManagement" method="POST" action="productManagement.php" autocomplete="on">
-					<a class="anchor" id="productManagement"></a>
+					<form id="productManagement" name="productManagement" method="POST" action="productManagement.php" >
+					<a  class="anchor" id="productManagement"></a>
 					<h3 id="coupon" class="tit_group"><span class="img_black ico_coupon"></span>PRODUCT</h3>
 					<div class="group_detail group_coupon">
 						
-						<ul class="list_item">
-															<div class="none_data">
-									<span class="img_black"></span>
-									<dl class="list_regist">
+						
+															
+								<dl class="list_regist">
+									
 									<dd>
 								
 								<p>
-                    				<a href="PRODUCT/create.php" class="btn btn-success">Create</a>
+                    				<a  href="PRODUCT/create.php" class="btn_regist">Create</a>
                 				</p>
-									<table id="ADMIN_TABLE">
+									<table style="color:#111;" id="PRODUCT_TABLE">
 										<tr>
 											<th>PRODUCT_ID</th>
 											<th>PRODUCT_Type</th>
@@ -312,27 +304,26 @@
 									  <!--PHP TABLE START-->
 									  <?php
 										include 'dbconn.php';
-										$prodCat = "Cable";
-
-										$sql = "SELECT * FROM ADMINS ORDER BY ADMINS_ID ?";
+										$sql = "SELECT * FROM PRODUCT ORDER BY PRODUCT_ID";
 										$dbrs = $dbConn->prepare($sql);
-										$dbrs->execute(array($prodCat));
+										$dbrs->execute();
 
-										$numrow = $dbrs->rowCount();
+										$numrow = $dbrs->rowCount(); 
+										echo "<div style='color:#111;'> $numrow row(s) retrieved</div>" . "\n<br>";
 										
 										foreach ($dbrs as $dbrow) {
 													echo '<tr>';
-													echo '<td>'. $row['PRODUCT_ID'] . '</td>';
-													echo '<td>'. $row['PRODUCT_Type'] . '</td>';
-													echo '<td>'. $row['PRODUCT_Title'] . '</td>';
-													echo '<td>'. $row['PRODUCT_Price'] . '</td>';
-													echo '<td>'. $row['PRODUCT_Version'] . '</td>';
+													echo '<td>'. $dbrow['PRODUCT_ID'] . '</td>';
+													echo '<td>'. $dbrow['PRODUCT_Type'] . '</td>';
+													echo '<td>'. $dbrow['PRODUCT_Title'] . '</td>';
+													echo '<td>'. $dbrow['PRODUCT_Price'] . '</td>';
+													echo '<td>'. $dbrow['PRODUCT_Version'] . '</td>';
 													echo '<td width=250>';
-													echo '<a class="btn" href="PRODUCT/read.php?id='.$row['ARTICLE_ID'].'">Read</a>';
+													echo '<a  class="btn_regist" href="PRODUCT/read.php?id='.$dbrow['ARTICLE_ID'].'">Read</a>';
 													echo ' ';
-													echo '<a class="btn btn-success" href="PRODUCT/update.php?id='.$row['ARTICLE_ID'].'">Update</a>';
+													echo '<a  class="btn_regist" href="PRODUCT/update.php?id='.$dbrow['ARTICLE_ID'].'">Update</a>';
 													echo ' ';
-													echo '<a class="btn btn-danger" href="PRODUCT/delete.php?id='.$row['ARTICLE_ID'].'">Delete</a>';
+													echo '<a  class="btn_regist" href="PRODUCT/delete.php?id='.$dbrow['ARTICLE_ID'].'">Delete</a>';
 													echo '</td>';
 													echo '</tr>';
 										}
@@ -343,74 +334,70 @@
 									  </tr>
 									</table>
 								</dd>
-
 							</dl>
-								</div>
-													</ul>
-													s
+
+							
+								
+													
+													
 													
 											</div>
 											</form>
 					<!--END PRODUCT-->
 					<!--ORDERS-->
 					<br>
-					<form id="orders" name="orders" method="POST" action="orders.php" autocomplete="on">
-					<a class="anchor" id="orders"></a>
+					<form id="orders" name="orders" method="POST" action="orders.php" >
+					<a  class="anchor" id="orders"></a>
 					<h3 class="tit_group"><span class="img_black ico_history"></span>ORDERS</h3>
 					<div class="group_detail group_history">
-						<strong class="screen_out">Purchase Tab Menu</strong>
-						<ul class="list_tab">
-							<li class="on">
-								<a class="link_tab" data-target="cashHistory" href="javascript:;">Game Orders</a>
-							</li>
+						
+						
+						<dl class="list_regist">
 							
-						</ul>
-						<ul id="cashHistory" class="list_item" style="display:block;">
-															<div class="none_data">
 								<dd>
 								
 								<p>
-                    				<a href="ORDERS/create.php" class="btn btn-success">Create</a>
+                    				<a  href="ORDERS/create.php" class="btn_regist">Create</a>
                 				</p>
-									<table id="ADMIN_TABLE">
+									<table style="color:#111;" id="ORDERS_TABLE">
 										<tr>
 											<th>ORDERS_ID</th>
-											<th>ORDERS_CreiditCard</th>
-											<th>ORDERS_ExpiryDate</th>
-											<th>ORDERS_SecurityNumber</th>
-											<th>ORDERS_NameOnCard</th>
-											<th>ORDERS_DATE</th>
+											<th>CreiditCard</th>
+											<th>Expiry</th>
+											<th>SecNum</th>
+											<th>Name</th>
+											<th>DATE</th>
 											<th>ACCOUNT_ID</th>
 											<th>PRODUCT_ID</th>
 											<th>ACTION</th>
 										</tr>
 									  <!--PHP TABLE START-->
 									  <?php
-										include 'dbconn.php';
-										$prodCat = "Cable";
-
-										$sql = "SELECT * FROM ADMINS ORDER BY ADMINS_ID ?";
+										$dbConn = new PDO("mysql:host=localhost;dbname=8BITDB", "root", "root");
+										$sql = "SELECT * FROM ORDERS ORDER BY ORDERS_ID";
 										$dbrs = $dbConn->prepare($sql);
-										$dbrs->execute(array($prodCat));
+										$dbrs->execute();
 
-										$numrow = $dbrs->rowCount();
+										$numrow = $dbrs->rowCount(); 
+										echo "<div style='color:#111;'> $numrow row(s) retrieved</div>" . "\n<br>";
+										
 										
 										foreach ($dbrs as $dbrow) {
 													echo '<tr>';
-													echo '<td>'. $row['ORDERS_ID'] . '</td>';
-													echo '<td>'. $row['ORDERS_CreiditCard'] . '</td>';
-													echo '<td>'. $row['ORDERS_ExpiryDate'] . '</td>';
-													echo '<td>'. $row['ORDERS_SecurityNumber'] . '</td>';
-													echo '<td>'. $row['ORDERS_NameOnCard'] . '</td>';
-													echo '<td>'. $row['ORDERS_DATE'] . '</td>';
-													echo '<td>'. $row['ACCOUNT_ID'] . '</td>';
-													echo '<td>'. $row['PRODUCT_ID'] . '</td>';
+													echo '<td>'. $dbrow['ORDERS_ID'] . '</td>';
+													echo '<td>'. $dbrow['ORDERS_CreiditCard'] . '</td>';
+													echo '<td>'. $dbrow['ORDERS_ExpiryDate'] . '</td>';
+													echo '<td>'. $dbrow['ORDERS_SecurityNumber'] . '</td>';
+													echo '<td>'. $dbrow['ORDERS_NameOnCard'] . '</td>';
+													echo '<td>'. $dbrow['ORDERS_DATE'] . '</td>';
+													echo '<td>'. $dbrow['ACCOUNT_ID'] . '</td>';
+													echo '<td>'. $dbrow['PRODUCT_ID'] . '</td>';
 													echo '<td width=250>';
-													echo '<a class="btn" href="ORDERS/read.php?id='.$row['ARTICLE_ID'].'">Read</a>';
+													echo '<a  class="btn_regist" href="ORDERS/read.php?id='.$dbrow['ARTICLE_ID'].'">Read</a>';
 													echo ' ';
-													echo '<a class="btn btn-success" href="ORDERS/update.php?id='.$row['ARTICLE_ID'].'">Update</a>';
+													echo '<a  class="btn_regist" href="ORDERS/update.php?id='.$dbrow['ARTICLE_ID'].'">Update</a>';
 													echo ' ';
-													echo '<a class="btn btn-danger" href="ORDERS/delete.php?id='.$row['ARTICLE_ID'].'">Delete</a>';
+													echo '<a  class="btn_regist" href="ORDERS/delete.php?id='.$dbrow['ARTICLE_ID'].'">Delete</a>';
 													echo '</td>';
 													echo '</tr>';
 										}
@@ -421,8 +408,8 @@
 									  </tr>
 									</table>
 								</dd>
-								</div>
-													</ul>
+							</dl>
+													
 						
 					</div>
 					</form>

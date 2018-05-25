@@ -1,7 +1,7 @@
 <?php
      
 	 //Updtae
-    require 'database.php';
+    $con = new PDO ("mysql:host=localhost;dbname=8bitdb","root","root");
  
     if ( !empty($_POST)) {
         // keep track validation errors

@@ -1,12 +1,12 @@
-<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <?php
-	include_once 'head.php';
-?>
-<body>
-<?php
-	include_once 'navBar.php';
+session_start();
+
+include 'head.php';
+
+include "navBar.php";
+	
+
 ?>
 
 <hr class="hide">
@@ -24,12 +24,6 @@
 				<div class="detail_black" style="margin-top:7%;">
 					<div class="wrap_tit">
 						<h3 class="tit_detail" id="kakaoBody"><span class="img_black"></span>NEWS</h3><strong class="screen_out">Filter by</strong>
-						<ul class="list_category">
-							
-							<li class="on">
-								<a class="link_category" href="NewsUpdates.php">UPDATES</a>
-							</li>
-						</ul>
 					</div>
 					<!--ERROR Image Does Not Show Up -->
 					<ul class="list_news">

@@ -1,9 +1,12 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	
 	<!--Web Site title--->
 	<title> 8-BIT</title>
-	<title><?php print $ptitle ?></title>
+	<title></title>
 	<link rel="icon" href="img/ZombieIcon.png"> <!--browser icon-->
 	<!------------------>
 	
@@ -20,11 +23,7 @@
 	<link rel="stylesheet" type="text/css" href="css/gallerycss.css" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	
-	<style>
-		@media (max-width: 1800px) {
-							.gnb_comm .link_gnb{padding:34px 21px !important}
-					}
-	</style>
+	
 	<script type="text/javascript" async="" src="script/recaptcha__en.js"></script><script id="facebook-jssdk" src="script/sdk.js"></script><script async="" src="script/gtm.js"></script><script type="text/javascript" src="script/jquery-1.js"></script>
 
 </head>
