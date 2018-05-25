@@ -17,7 +17,11 @@ if($numrow == 0)
 else
 {
 	$_SESSION['Email'] = $ADMIN_Email;
+<<<<<<< HEAD
 	$_SESSION['LoggedInA'] = true;
+=======
+	$_SESSION['LoggedIn'] = true;
+>>>>>>> 7613087543677ec9a0fb7a4ccd345bf025cbc985
 
 	header("location: adminpage.php"); 
 }

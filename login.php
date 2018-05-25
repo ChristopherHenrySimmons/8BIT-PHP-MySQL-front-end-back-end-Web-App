@@ -19,6 +19,7 @@ include "navBar.php";
 					
 					<h2 class="tit_detail" id="kakaoBody">Member Login</h2>
 					<?php
+<<<<<<< HEAD
 					
 					if (isset($_GET['status']))
 					{
@@ -27,6 +28,17 @@ include "navBar.php";
 							echo "<center><h3>Invalid Email or Password</h3></center>";
 						}
 					}
+=======
+					
+					if (isset($_GET['status']))
+					{
+						if ($_GET['status'] == -1)
+						{
+							echo "<center><h3>Invalid Email or Password</h3></center>";
+						}
+					}
+					
+>>>>>>> 7613087543677ec9a0fb7a4ccd345bf025cbc985
 					?>
 					<p class="desc_login" style="color:#FFF">Get in here.</p>
 						<center>

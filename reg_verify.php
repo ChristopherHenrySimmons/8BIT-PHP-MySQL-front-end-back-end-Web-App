@@ -25,7 +25,11 @@ $con = new PDO ("mysql:host=localhost;dbname=8bitdb","root","root");
 				$insert = $con->prepare("INSERT INTO ACCOUNT (ACCOUNT_Email, ACCOUNT_Password)VALUES(:Email,:Password) ");
 				$insert->execute(array('Email' => $ACCOUNT_Email, 'Password' => $ACCOUNT_Password));
 		
+<<<<<<< HEAD
 				header('Location: register.php?status=-1');
+=======
+				header('Location: register.php?action=joined');
+>>>>>>> 7613087543677ec9a0fb7a4ccd345bf025cbc985
 			}
 			catch(PDOException $e) 
 			{

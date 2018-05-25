@@ -20,6 +20,7 @@ include "navBar.php";
 					<h2 class="tit_detail" id="kakaoBody">CREATE YOUR ACCOUNT</h2>
 					<p class="desc_login" style="color:#FFF">Join us on your next great happy adventure.</p>
 					<center>
+<<<<<<< HEAD
 					<?php
 					if (isset($_GET['status']))
 					{
@@ -29,6 +30,8 @@ include "navBar.php";
 						}
 					}
 					?>
+=======
+>>>>>>> 7613087543677ec9a0fb7a4ccd345bf025cbc985
 					<form method="post" action="reg_verify.php">
 					<input type="text" name="Email" placeholder="ex@Email.com"><br><br>
 					<input type="password" name="Password" placeholder="**********"><br><br>

@@ -3,12 +3,16 @@
 </head>
 
 <?php
+<<<<<<< HEAD
 session_start();
 
 include 'head.php';
 
 include "navBar.php";
 
+=======
+include_once 'navBar.php';
+>>>>>>> 7613087543677ec9a0fb7a4ccd345bf025cbc985
 try{
 	$con = new PDO ("mysql:host=localhost;dbname=8bitdb","root","root");
 		if(isset($_POST['submit'])){
@@ -93,6 +97,8 @@ catch(PDOException $e){
 					
 				</div>
 
+<<<<<<< HEAD
+=======
 				<div class="group_set" style="">
 							<dl class="list_regist">
 								
@@ -108,6 +114,27 @@ catch(PDOException $e){
 					
 				</div>
 
+>>>>>>> 7613087543677ec9a0fb7a4ccd345bf025cbc985
+				<div class="group_set" style="">
+							<dl class="list_regist">
+								
+									<div class="group_set">
+										<div class="box_tf">
+<<<<<<< HEAD
+											<input  class="tf_comm" id="cardExp" name="cardExp" type="text" placeholder="Expiration Date MM/YY" required> <span class="img_black ico_error"></span>
+=======
+											<input  class="tf_comm" id="cardSec" name="cardSec" type="text" placeholder="Security Code" required> <span class="img_black ico_error"></span>
+>>>>>>> 7613087543677ec9a0fb7a4ccd345bf025cbc985
+										</div>
+										<span class="txt_error">Required</span>
+									</div>
+								
+							</dl>
+
+					
+				</div>
+<<<<<<< HEAD
+
 				<div class="group_set" style="">
 							<dl class="list_regist">
 								
@@ -122,13 +149,19 @@ catch(PDOException $e){
 
 					
 				</div>
+=======
+>>>>>>> 7613087543677ec9a0fb7a4ccd345bf025cbc985
 				
 																				
 				</ul>
 											</div>
 						<div class="wrap_btn  group_billing">	
 							<button style="float:left;" onclick="goBack();">BACK</button>	
+<<<<<<< HEAD
 							<input style="float:right;" type="submit" name="submit" value="Submit Payment">
+=======
+							<input style="float:right;" type="submit" name="submit" value="Subment Payment">
+>>>>>>> 7613087543677ec9a0fb7a4ccd345bf025cbc985
 							<!--GOTO ACCOUNT ADD TO PURCHASE HISTORY 21600681-->
 						</div>	
 										</div>
